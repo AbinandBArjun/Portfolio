@@ -3,7 +3,7 @@ export const portfolioData = {
     name: "Abinand B Arjun",
     title: "AI Engineer & Machine Learning Architect",
     tagline: "Building autonomous AI agents, fine-tuning state-of-the-art LLMs, and crafting production-grade RAG pipelines.",
-    location: "Bengaluru, India (UTC +5:30)",
+    location: "Pathanamthitta, Kerala, India (UTC +5:30)",
     status: "Available for AI Engineering & Consulting",
     bio: "Passionate AI Engineer specializing in Deep Learning, Large Language Models (LLMs), Generative AI, and Distributed Training. I bridge the gap between cutting-edge AI research and scalable, low-latency production applications.",
     email: "abinandbarjun7@gmail.com", // updateable by user
