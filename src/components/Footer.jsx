@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Cpu, Heart } from 'lucide-react';
+import { ArrowUp, Cpu } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export const Footer = () => {

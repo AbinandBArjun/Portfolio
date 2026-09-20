@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Copy, Check, Send, Sparkles, MessageSquare } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Mail, Copy, Check, Send, MessageSquare } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, TwitterIcon } from './Icons';
 import confetti from 'canvas-confetti';
 import { portfolioData } from '../data/portfolioData';
@@ -14,14 +14,21 @@ export const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText(personal.email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    navigator.clipboard.writeText(personal.email)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      })
+      .catch(() => {});
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.email || !formData.message) return;
+
+    const subject = encodeURIComponent(`Portfolio enquiry from ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
+    window.location.href = `mailto:${personal.email}?subject=${subject}&body=${body}`;
 
     confetti({
       particleCount: 100,
@@ -40,7 +47,7 @@ export const Contact = () => {
     { name: 'GitHub', icon: GithubIcon, href: personal.github, color: 'hover:text-white' },
     { name: 'LinkedIn', icon: LinkedinIcon, href: personal.linkedin, color: 'hover:text-sky-400' },
     { name: 'Twitter', icon: TwitterIcon, href: personal.twitter, color: 'hover:text-sky-300' }
-  ];
+  ].filter((social) => social.href);
 
   return (
     <section id="contact" className="py-24 relative z-10">
@@ -79,6 +86,7 @@ export const Contact = () => {
 
                   <button
                     onClick={handleCopyEmail}
+                    aria-label="Copy email address"
                     className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-mono"
                   >
                     {copied ? (
@@ -109,6 +117,7 @@ export const Contact = () => {
                       href={social.href}
                       target="_blank"
                       rel="noreferrer"
+                      aria-label={social.name}
                       className={`p-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-400 ${social.color} transition-all duration-300 hover:border-white/20 hover:scale-105`}
                     >
                       <Icon className="w-5 h-5" />
@@ -132,16 +141,17 @@ export const Contact = () => {
                 <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-4 border border-emerald-500/30">
                   <Check className="w-6 h-6" />
                 </div>
-                <h4 className="text-xl font-bold text-white mb-2">Message Dispatched!</h4>
+                <h4 className="text-xl font-bold text-white mb-2">Email Draft Opened</h4>
                 <p className="text-slate-400 text-sm">
-                  Thank you for reaching out! I'll get back to your inquiry promptly.
+                  Review the prepared email in your mail app, then send it when you are ready.
                 </p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="text-xs font-mono text-slate-400 block mb-1">YOUR NAME</label>
+                  <label htmlFor="contact-name" className="text-xs font-mono text-slate-400 block mb-1">YOUR NAME</label>
                   <input
+                    id="contact-name"
                     type="text"
                     required
                     value={formData.name}
@@ -152,8 +162,9 @@ export const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="text-xs font-mono text-slate-400 block mb-1">EMAIL ADDRESS</label>
+                  <label htmlFor="contact-email" className="text-xs font-mono text-slate-400 block mb-1">EMAIL ADDRESS</label>
                   <input
+                    id="contact-email"
                     type="email"
                     required
                     value={formData.email}
@@ -164,8 +175,9 @@ export const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="text-xs font-mono text-slate-400 block mb-1">PROJECT DETAILS / MESSAGE</label>
+                  <label htmlFor="contact-message" className="text-xs font-mono text-slate-400 block mb-1">PROJECT DETAILS / MESSAGE</label>
                   <textarea
+                    id="contact-message"
                     required
                     rows={4}
                     value={formData.message}
@@ -180,7 +192,7 @@ export const Contact = () => {
                   className="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-purple-600 text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity shadow-[0_0_20px_rgba(56,189,248,0.25)] cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Send Message</span>
+                  <span>Open Email Draft</span>
                 </button>
               </form>
             )}

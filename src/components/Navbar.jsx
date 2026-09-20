@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cpu, Menu, X, ArrowUpRight, Terminal } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import { Cpu, Menu, X, ArrowUpRight } from 'lucide-react';
+
+const navLinks = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Playground', href: '#playground' },
+  { name: 'Contact', href: '#contact' }
+];
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Playground', href: '#playground' },
-    { name: 'Contact', href: '#contact' }
-  ];
 
   useEffect(() => {
     const handleScroll = () => {

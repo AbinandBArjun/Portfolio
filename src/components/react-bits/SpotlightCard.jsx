@@ -28,6 +28,13 @@ export const SpotlightCard = ({
     setOpacity(0);
   };
 
+  const handleKeyDown = (event) => {
+    if (onClick && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      onClick(event);
+    }
+  };
+
   return (
     <div
       ref={cardRef}
@@ -35,11 +42,14 @@ export const SpotlightCard = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
       className={`relative overflow-hidden glass-panel ${className}`}
       style={{
         cursor: onClick ? 'pointer' : 'default'
       }}
-    >
+      >
       {/* Dynamic Cursor Spotlight Layer */}
       <div
         className="pointer-events-none absolute -inset-px transition-opacity duration-300"

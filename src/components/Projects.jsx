@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ExternalLink, ArrowRight, X, CheckCircle2, Layers } from 'lucide-react';
+import { Sparkles, ExternalLink, ArrowRight, X, CheckCircle2 } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import confetti from 'canvas-confetti';
 import { portfolioData } from '../data/portfolioData';
@@ -10,6 +10,7 @@ export const Projects = () => {
   const { projects } = portfolioData;
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeModalProject, setActiveModalProject] = useState(null);
+  const closeButtonRef = useRef(null);
 
   const categories = ['All', 'LLMs & RAG', 'AI Agents', 'Computer Vision', 'MLOps & Fine-Tuning'];
 
@@ -18,6 +19,7 @@ export const Projects = () => {
     : projects.filter(p => p.category === selectedCategory);
 
   const handleLaunchDemo = (url) => {
+    if (!url) return;
     confetti({
       particleCount: 80,
       spread: 70,
@@ -25,6 +27,18 @@ export const Projects = () => {
     });
     window.open(url, '_blank');
   };
+
+  useEffect(() => {
+    if (!activeModalProject) return undefined;
+
+    closeButtonRef.current?.focus();
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setActiveModalProject(null);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeModalProject]);
 
   return (
     <section id="projects" className="py-24 relative z-10">
@@ -134,10 +148,15 @@ export const Projects = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="relative w-full max-w-3xl glass-panel p-6 sm:p-8 bg-[#0d111a] border border-sky-500/30 shadow-2xl rounded-2xl max-h-[90vh] overflow-y-auto"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="project-dialog-title"
             >
               {/* Close Modal Button */}
               <button
+                ref={closeButtonRef}
                 onClick={() => setActiveModalProject(null)}
+                aria-label="Close project details"
                 className="absolute top-4 right-4 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
               >
                 <X className="w-5 h-5" />
@@ -148,7 +167,7 @@ export const Projects = () => {
                 <span className="px-3 py-1 rounded-full text-xs font-mono bg-sky-500/10 text-sky-400 border border-sky-500/30">
                   {activeModalProject.category}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mt-3 mb-2">
+                <h3 id="project-dialog-title" className="text-2xl sm:text-3xl font-bold text-white mt-3 mb-2">
                   {activeModalProject.title}
                 </h3>
                 <p className="text-slate-300 text-sm sm:text-base">
@@ -184,6 +203,7 @@ export const Projects = () => {
               {/* Action CTA Buttons */}
               <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
                 <div className="flex items-center gap-3">
+                  {activeModalProject.demoUrl && (
                   <button
                     onClick={() => handleLaunchDemo(activeModalProject.demoUrl)}
                     className="px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-sm flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(56,189,248,0.4)] cursor-pointer"
@@ -191,6 +211,7 @@ export const Projects = () => {
                     <span>Live Interactive Demo</span>
                     <ExternalLink className="w-4 h-4" />
                   </button>
+                  )}
 
                   <a
                     href={activeModalProject.githubUrl}

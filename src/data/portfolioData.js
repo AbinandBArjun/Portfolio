@@ -9,11 +9,11 @@ export const portfolioData = {
     email: "abinandbarjun7@gmail.com", // updateable by user
     github: "https://github.com/AbinandBArjun",
     linkedin: "https://www.linkedin.com/in/abinand-b-arjun",
-    twitter: "https://twitter.com",
-    huggingface: "https://huggingface.co",
-    resumeUrl: "#resume"
+    twitter: "",
+    huggingface: "",
+    resumeUrl: ""
   },
-  
+
   stats: [
     { label: "AI Models Deployed", value: "35+", icon: "Brain" },
     { label: "Token Processing / Sec", value: "12.4k", icon: "Zap" },
@@ -54,7 +54,7 @@ export const portfolioData = {
         "Custom LoRA fine-tuned Llama-3 8B model specialized for financial & legal parsing.",
         "Evaluated with Ragas benchmark achieving 94.2% context precision."
       ],
-      demoUrl: "https://example.com/demo/rag",
+      demoUrl: "",
       githubUrl: "https://github.com/abinand/nexus-multimodal-rag"
     },
     {
@@ -70,7 +70,7 @@ export const portfolioData = {
         "Asynchronous parallel tool invocation reducing multi-agent step latency by 45%.",
         "Built-in token streaming telemetry and token budget guardrails."
       ],
-      demoUrl: "https://example.com/demo/neuroflow",
+      demoUrl: "",
       githubUrl: "https://github.com/abinand/neuroflow-agent-engine"
     },
     {
@@ -86,7 +86,7 @@ export const portfolioData = {
         "TensorRT quantization reducing FP32 models to INT8 with under 1% mAP drop.",
         "Exported live metrics feed via WebSockets for real-time monitoring dashboard."
       ],
-      demoUrl: "https://example.com/demo/aether-cv",
+      demoUrl: "",
       githubUrl: "https://github.com/abinand/aether-cv-analytics"
     },
     {
@@ -102,7 +102,7 @@ export const portfolioData = {
         "Automatic GGUF & AWQ quantization export pipeline for local edge inference.",
         "VRAM optimization suite preventing CUDA Out-Of-Memory exceptions."
       ],
-      demoUrl: "https://example.com/demo/neuralforge",
+      demoUrl: "",
       githubUrl: "https://github.com/abinand/neuralforge-mlops"
     }
   ],

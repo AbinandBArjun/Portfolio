@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Sparkles, ArrowRight, Download, Terminal, Zap, ShieldCheck } from 'lucide-react';
+import { Sparkles, Download, Terminal } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { ParticleCanvas } from './react-bits/ParticleCanvas';
 import { TextScramble } from './react-bits/TextScramble';
@@ -92,11 +92,11 @@ export const Hero = () => {
           <ShinyButton
             variant="emerald"
             icon={Download}
-            onClick={() => {
-              window.open(personal.resumeUrl, '_blank');
-            }}
+            onClick={() => personal.resumeUrl
+              ? window.open(personal.resumeUrl, '_blank', 'noopener,noreferrer')
+              : document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Resume
+            {personal.resumeUrl ? 'Resume' : 'Request Resume'}
           </ShinyButton>
         </motion.div>
 

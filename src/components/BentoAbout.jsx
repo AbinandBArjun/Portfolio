@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Clock, Brain, Cpu, Database, Server, Layers, Award, Terminal, Activity } from 'lucide-react';
+import { MapPin, Clock, Brain, Cpu, Database, Layers, Activity } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { SpotlightCard } from './react-bits/SpotlightCard';
 

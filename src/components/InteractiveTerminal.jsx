@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Terminal as TerminalIcon, Play, RefreshCw, Sparkles, Send } from 'lucide-react';
+import { Terminal as TerminalIcon, Send } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export const InteractiveTerminal = () => {
