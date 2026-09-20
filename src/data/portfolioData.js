@@ -1,12 +1,12 @@
 export const portfolioData = {
   personal: {
-    name: "Abinand",
+    name: "Abinand B Arjun",
     title: "AI Engineer & Machine Learning Architect",
     tagline: "Building autonomous AI agents, fine-tuning state-of-the-art LLMs, and crafting production-grade RAG pipelines.",
     location: "Bengaluru, India (UTC +5:30)",
     status: "Available for AI Engineering & Consulting",
     bio: "Passionate AI Engineer specializing in Deep Learning, Large Language Models (LLMs), Generative AI, and Distributed Training. I bridge the gap between cutting-edge AI research and scalable, low-latency production applications.",
-    email: "abinand.ai@example.com", // updateable by user
+    email: "abinand.barjun@gmail.com", // updateable by user
     github: "https://github.com",
     linkedin: "https://linkedin.com",
     twitter: "https://twitter.com",
@@ -146,10 +146,10 @@ export const portfolioData = {
 
   terminalCommands: {
     help: "Available commands: bio, skills, models, projects, contact, clear",
-    bio: "Abinand - AI Engineer specializing in LLMs, RAG, Computer Vision, & Deep Learning.",
+    bio: "Abinand B Arjun - AI Engineer specializing in LLMs, RAG, Computer Vision, & Deep Learning.",
     skills: "PyTorch | HuggingFace | LangChain | Qdrant | CUDA | vLLM | FastAPI | Docker",
     models: "Fine-tuned models: Llama-3-8B-RAG, Mistral-7B-LoRA, YOLOv8-Custom-CV, Whisper-Hindi",
     projects: "Type 'projects' or scroll to Projects section to explore interactive demos!",
-    contact: "Email: abinand.ai@example.com | GitHub: github.com/abinand | LinkedIn: linkedin.com/in/abinand"
+    contact: "Email: abinand.barjun@gmail.com | GitHub: github.com/abinand | LinkedIn: linkedin.com/in/abinand"
   }
 };
