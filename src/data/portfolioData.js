@@ -6,7 +6,7 @@ export const portfolioData = {
     location: "Bengaluru, India (UTC +5:30)",
     status: "Available for AI Engineering & Consulting",
     bio: "Passionate AI Engineer specializing in Deep Learning, Large Language Models (LLMs), Generative AI, and Distributed Training. I bridge the gap between cutting-edge AI research and scalable, low-latency production applications.",
-    email: "abinand.barjun@gmail.com", // updateable by user
+    email: "abinandbarjun7@gmail.com", // updateable by user
     github: "https://github.com",
     linkedin: "https://linkedin.com",
     twitter: "https://twitter.com",
@@ -150,6 +150,6 @@ export const portfolioData = {
     skills: "PyTorch | HuggingFace | LangChain | Qdrant | CUDA | vLLM | FastAPI | Docker",
     models: "Fine-tuned models: Llama-3-8B-RAG, Mistral-7B-LoRA, YOLOv8-Custom-CV, Whisper-Hindi",
     projects: "Type 'projects' or scroll to Projects section to explore interactive demos!",
-    contact: "Email: abinand.barjun@gmail.com | GitHub: github.com/abinand | LinkedIn: linkedin.com/in/abinand"
+    contact: "Email: abinandbarjun7@gmail.com | GitHub: github.com/abinand | LinkedIn: linkedin.com/in/abinand"
   }
 };
