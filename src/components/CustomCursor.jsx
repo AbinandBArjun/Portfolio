@@ -67,7 +67,7 @@ export const CustomCursor = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden">
-      {/* Outer Halo Ring */}
+      {/* Outer Follower Halo Ring */}
       <motion.div
         style={{
           x: smoothX,
@@ -94,22 +94,42 @@ export const CustomCursor = () => {
         )}
       </motion.div>
 
-      {/* Center Black Precision Pointer Dot */}
+      {/* Classic Windows XP Arrow Pointer */}
       <motion.div
         style={{
           x: mouseX,
           y: mouseY,
-          translateX: '-50%',
-          translateY: '-50%',
+          translateX: '0%',
+          translateY: '0%',
         }}
         animate={{
-          scale: isMouseDown ? 1.4 : isHovered ? 0.5 : 1,
-          backgroundColor: '#000000',
-          borderColor: isHovered ? 'rgba(168, 85, 247, 0.9)' : 'rgba(255, 255, 255, 0.8)',
+          scale: isMouseDown ? 0.85 : isHovered ? 1.15 : 1,
         }}
         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-        className="fixed top-0 left-0 w-2.5 h-2.5 rounded-full border border-white/80 bg-black shadow-[0_0_8px_rgba(0,0,0,0.8)] will-change-transform"
-      />
+        className="fixed top-0 left-0 will-change-transform pointer-events-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+      >
+        <svg
+          width="19"
+          height="23"
+          viewBox="0 0 19 23"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Crisp White Outer Border for XP Classic Arrow */}
+          <path
+            d="M1 1V19.5L5.8 14.7L9.8 21.5L13.2 19.8L9.2 13.1H16L1 1Z"
+            fill="white"
+            stroke="white"
+            strokeWidth="1.2"
+            strokeLinejoin="round"
+          />
+          {/* Solid Black Inner Arrow Body */}
+          <path
+            d="M2.5 3.5V17L6.2 13.3L9.8 19.2L11.5 18.2L7.9 12.3H13.5L2.5 3.5Z"
+            fill="#000000"
+          />
+        </svg>
+      </motion.div>
     </div>
   );
 };
