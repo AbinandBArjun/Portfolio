@@ -7,17 +7,17 @@ export const CustomCursor = () => {
   const [hoverText, setHoverText] = useState('');
   const [isMouseDown, setIsMouseDown] = useState(false);
 
-  // Mouse position motion values
+  // Real-time mouse coordinates
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Responsive, silky smooth spring follower for the outer halo
-  const springConfig = { damping: 22, stiffness: 450, mass: 0.15 };
+  // Smooth fluid spring physics for outer follower halo (curtisdesignr.me spec)
+  const springConfig = { damping: 24, stiffness: 380, mass: 0.2 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    // Disable on coarse touch pointer devices (smartphones/tablets)
+    // Only enable on desktop/fine pointer devices
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
     if (isTouchDevice) return;
 
@@ -33,7 +33,7 @@ export const CustomCursor = () => {
     const handleMouseDown = () => setIsMouseDown(true);
     const handleMouseUp = () => setIsMouseDown(false);
 
-    // Dynamic hover handler for interactive elements
+    // Interactive element hover detection
     const handleMouseOver = (e) => {
       const target = e.target.closest('a, button, [role="button"], input, textarea, .glass-panel, [data-cursor]');
       if (target) {
@@ -67,7 +67,7 @@ export const CustomCursor = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden">
-      {/* Compact Outer Follower Halo Ring (w-8 h-8) */}
+      {/* Outer Follower Ring - curtisdesignr.me style thin halo (36px) */}
       <motion.div
         style={{
           x: smoothX,
@@ -76,25 +76,25 @@ export const CustomCursor = () => {
           translateY: '-50%',
         }}
         animate={{
-          scale: isMouseDown ? 0.75 : isHovered ? 1.6 : 1,
-          borderColor: isHovered ? 'rgba(56, 189, 248, 0.9)' : 'rgba(56, 189, 248, 0.45)',
-          backgroundColor: isHovered ? 'rgba(56, 189, 248, 0.12)' : 'rgba(56, 189, 248, 0.03)',
+          scale: isMouseDown ? 0.75 : isHovered ? 1.75 : 1,
+          borderColor: isHovered ? 'rgba(56, 189, 248, 0.85)' : 'rgba(255, 255, 255, 0.35)',
+          backgroundColor: isHovered ? 'rgba(56, 189, 248, 0.1)' : 'rgba(255, 255, 255, 0.02)',
         }}
         transition={{ type: 'spring', stiffness: 350, damping: 24 }}
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-sky-400/50 backdrop-blur-xs flex items-center justify-center shadow-[0_0_15px_rgba(56,189,248,0.25)] will-change-transform"
+        className="fixed top-0 left-0 w-9 h-9 rounded-full border border-white/35 backdrop-blur-[1px] flex items-center justify-center shadow-[0_0_15px_rgba(56,189,248,0.2)] will-change-transform"
       >
         {hoverText && (
           <motion.span
-            initial={{ opacity: 0, scale: 0.5 }}
+            initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="text-[9px] font-mono uppercase tracking-widest text-sky-300 font-bold"
+            className="text-[9px] font-mono uppercase tracking-widest text-sky-300 font-bold px-1"
           >
             {hoverText}
           </motion.span>
         )}
       </motion.div>
 
-      {/* Centered Compact Windows XP Arrow Pointer */}
+      {/* Inner Precision Dot - curtisdesignr.me style 8px solid dot */}
       <motion.div
         style={{
           x: mouseX,
@@ -103,33 +103,12 @@ export const CustomCursor = () => {
           translateY: '-50%',
         }}
         animate={{
-          scale: isMouseDown ? 0.85 : isHovered ? 1.2 : 1,
+          scale: isMouseDown ? 1.4 : isHovered ? 0.35 : 1,
+          backgroundColor: isHovered ? '#a855f7' : '#38bdf8',
         }}
-        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-        className="fixed top-0 left-0 will-change-transform pointer-events-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]"
-      >
-        <svg
-          width="14"
-          height="17"
-          viewBox="0 0 19 23"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Crisp White Outer Border for XP Arrow */}
-          <path
-            d="M1 1V19.5L5.8 14.7L9.8 21.5L13.2 19.8L9.2 13.1H16L1 1Z"
-            fill="white"
-            stroke="white"
-            strokeWidth="1.2"
-            strokeLinejoin="round"
-          />
-          {/* Solid Black Inner Arrow Body */}
-          <path
-            d="M2.5 3.5V17L6.2 13.3L9.8 19.2L11.5 18.2L7.9 12.3H13.5L2.5 3.5Z"
-            fill="#000000"
-          />
-        </svg>
-      </motion.div>
+        transition={{ type: 'spring', stiffness: 450, damping: 26 }}
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_10px_#38bdf8] will-change-transform"
+      />
     </div>
   );
 };
