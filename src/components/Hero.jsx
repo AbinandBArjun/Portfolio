@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Download, Terminal } from 'lucide-react';
+import { Sparkles, Download } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { ParticleCanvas } from './react-bits/ParticleCanvas';
 import { TextScramble } from './react-bits/TextScramble';
@@ -77,16 +77,6 @@ export const Hero = () => {
             }}
           >
             Explore AI Demos
-          </ShinyButton>
-
-          <ShinyButton
-            variant="secondary"
-            icon={Terminal}
-            onClick={() => {
-              document.getElementById('playground')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            AI CLI Sandbox
           </ShinyButton>
 
           <ShinyButton

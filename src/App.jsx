@@ -5,7 +5,6 @@ import { Hero } from './components/Hero';
 import { BentoAbout } from './components/BentoAbout';
 import { Projects } from './components/Projects';
 import { Experience } from './components/Experience';
-import { InteractiveTerminal } from './components/InteractiveTerminal';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 
@@ -25,7 +24,6 @@ function App() {
         <BentoAbout />
         <Projects />
         <Experience />
-        <InteractiveTerminal />
         <Contact />
       </main>
       <Footer />
