@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LoadingScreen } from './components/LoadingScreen';
+import { CustomCursor } from './components/CustomCursor';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { BentoAbout } from './components/BentoAbout';
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-[#07090e] text-slate-100 overflow-x-hidden selection:bg-sky-500/30 selection:text-sky-300">
+      <CustomCursor />
       <LoadingScreen key={loaderKey} />
       <Navbar onReplayLoader={handleReplayLoader} />
       <main>
