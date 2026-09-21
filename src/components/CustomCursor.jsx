@@ -67,7 +67,7 @@ export const CustomCursor = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden">
-      {/* Outer Follower Halo Ring */}
+      {/* Compact Outer Follower Halo Ring (w-8 h-8) */}
       <motion.div
         style={{
           x: smoothX,
@@ -76,46 +76,46 @@ export const CustomCursor = () => {
           translateY: '-50%',
         }}
         animate={{
-          scale: isMouseDown ? 0.75 : isHovered ? 1.7 : 1,
+          scale: isMouseDown ? 0.75 : isHovered ? 1.6 : 1,
           borderColor: isHovered ? 'rgba(56, 189, 248, 0.9)' : 'rgba(56, 189, 248, 0.45)',
           backgroundColor: isHovered ? 'rgba(56, 189, 248, 0.12)' : 'rgba(56, 189, 248, 0.03)',
         }}
         transition={{ type: 'spring', stiffness: 350, damping: 24 }}
-        className="fixed top-0 left-0 w-12 h-12 rounded-full border border-sky-400/50 backdrop-blur-xs flex items-center justify-center shadow-[0_0_20px_rgba(56,189,248,0.25)] will-change-transform"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-sky-400/50 backdrop-blur-xs flex items-center justify-center shadow-[0_0_15px_rgba(56,189,248,0.25)] will-change-transform"
       >
         {hoverText && (
           <motion.span
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="text-[10px] font-mono uppercase tracking-widest text-sky-300 font-bold"
+            className="text-[9px] font-mono uppercase tracking-widest text-sky-300 font-bold"
           >
             {hoverText}
           </motion.span>
         )}
       </motion.div>
 
-      {/* Classic Windows XP Arrow Pointer */}
+      {/* Centered Compact Windows XP Arrow Pointer */}
       <motion.div
         style={{
           x: mouseX,
           y: mouseY,
-          translateX: '0%',
-          translateY: '0%',
+          translateX: '-50%',
+          translateY: '-50%',
         }}
         animate={{
-          scale: isMouseDown ? 0.85 : isHovered ? 1.15 : 1,
+          scale: isMouseDown ? 0.85 : isHovered ? 1.2 : 1,
         }}
         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-        className="fixed top-0 left-0 will-change-transform pointer-events-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+        className="fixed top-0 left-0 will-change-transform pointer-events-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]"
       >
         <svg
-          width="19"
-          height="23"
+          width="14"
+          height="17"
           viewBox="0 0 19 23"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Crisp White Outer Border for XP Classic Arrow */}
+          {/* Crisp White Outer Border for XP Arrow */}
           <path
             d="M1 1V19.5L5.8 14.7L9.8 21.5L13.2 19.8L9.2 13.1H16L1 1Z"
             fill="white"
