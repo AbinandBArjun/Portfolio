@@ -11,7 +11,7 @@ const navLinks = [
   { name: 'Contact', href: '#contact' }
 ];
 
-export const Navbar = () => {
+export const Navbar = ({ onReplayLoader }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -95,8 +95,17 @@ export const Navbar = () => {
           })}
         </nav>
 
-        {/* CTA Button */}
+        {/* CTA Button & Loader Replay */}
         <div className="hidden md:flex items-center gap-3">
+          {onReplayLoader && (
+            <button
+              onClick={onReplayLoader}
+              title="Replay Loading Screen"
+              className="px-3 py-2 text-xs font-mono rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-white/10 text-slate-400 hover:text-sky-300 transition-all flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>[ Replay Loader ]</span>
+            </button>
+          )}
           <a
             href="#contact"
             className="group px-4 py-2 text-xs font-mono rounded-xl bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-300 flex items-center gap-1.5 transition-all shadow-[0_0_15px_rgba(56,189,248,0.15)]"
