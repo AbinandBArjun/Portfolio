@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useMotionValue } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -7,12 +7,18 @@ export const CustomCursor = () => {
   const [hoverText, setHoverText] = useState('');
   const [isMouseDown, setIsMouseDown] = useState(false);
 
-  // Exact real-time mouse position values (zero latency, locked 1:1)
+  // Mouse position motion values
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
+  // Ultra-responsive, silky smooth spring follower for the outer halo
+  // High stiffness + low mass = instant response with zero stiffness/static feel
+  const springConfig = { damping: 22, stiffness: 450, mass: 0.15 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
   useEffect(() => {
-    // Only enable custom cursor on devices with fine pointer (mouse/trackpad)
+    // Disable on coarse touch pointer devices (smartphones/tablets)
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
     if (isTouchDevice) return;
 
@@ -62,20 +68,20 @@ export const CustomCursor = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden">
-      {/* Outer Halo Ring - Instant 1:1 position lock */}
+      {/* Outer Halo Ring - Silky smooth high-stiffness spring follower */}
       <motion.div
         style={{
-          x: mouseX,
-          y: mouseY,
+          x: smoothX,
+          y: smoothY,
           translateX: '-50%',
           translateY: '-50%',
         }}
         animate={{
-          scale: isMouseDown ? 0.8 : isHovered ? 1.6 : 1,
+          scale: isMouseDown ? 0.75 : isHovered ? 1.6 : 1,
           borderColor: isHovered ? 'rgba(56, 189, 248, 0.9)' : 'rgba(56, 189, 248, 0.4)',
           backgroundColor: isHovered ? 'rgba(56, 189, 248, 0.12)' : 'rgba(56, 189, 248, 0.03)',
         }}
-        transition={{ type: 'tween', duration: 0.1, ease: 'easeOut' }}
+        transition={{ type: 'spring', stiffness: 350, damping: 24 }}
         className="fixed top-0 left-0 w-8 h-8 rounded-full border border-sky-400/50 backdrop-blur-xs flex items-center justify-center shadow-[0_0_15px_rgba(56,189,248,0.25)] will-change-transform"
       >
         {hoverText && (
@@ -98,10 +104,10 @@ export const CustomCursor = () => {
           translateY: '-50%',
         }}
         animate={{
-          scale: isMouseDown ? 1.4 : isHovered ? 0.6 : 1,
+          scale: isMouseDown ? 1.4 : isHovered ? 0.5 : 1,
           backgroundColor: isHovered ? '#a855f7' : '#38bdf8',
         }}
-        transition={{ duration: 0.05 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
         className="fixed top-0 left-0 w-2 h-2 rounded-full shadow-[0_0_10px_#38bdf8] will-change-transform"
       />
     </div>
