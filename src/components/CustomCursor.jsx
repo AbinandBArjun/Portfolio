@@ -67,7 +67,7 @@ export const CustomCursor = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden">
-      {/* Outer Halo Ring - Slightly larger (w-12 h-12) with smooth spring tracking */}
+      {/* Outer Halo Ring */}
       <motion.div
         style={{
           x: smoothX,
@@ -94,7 +94,7 @@ export const CustomCursor = () => {
         )}
       </motion.div>
 
-      {/* Center Precision Pointer Dot */}
+      {/* Center Black Precision Pointer Dot */}
       <motion.div
         style={{
           x: mouseX,
@@ -103,11 +103,12 @@ export const CustomCursor = () => {
           translateY: '-50%',
         }}
         animate={{
-          scale: isMouseDown ? 1.5 : isHovered ? 0.5 : 1,
-          backgroundColor: isHovered ? '#a855f7' : '#38bdf8',
+          scale: isMouseDown ? 1.4 : isHovered ? 0.5 : 1,
+          backgroundColor: '#000000',
+          borderColor: isHovered ? 'rgba(168, 85, 247, 0.9)' : 'rgba(255, 255, 255, 0.8)',
         }}
         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-        className="fixed top-0 left-0 w-2.5 h-2.5 rounded-full shadow-[0_0_12px_#38bdf8] will-change-transform"
+        className="fixed top-0 left-0 w-2.5 h-2.5 rounded-full border border-white/80 bg-black shadow-[0_0_8px_rgba(0,0,0,0.8)] will-change-transform"
       />
     </div>
   );
