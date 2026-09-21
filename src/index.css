@@ -160,9 +160,5 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Custom Pointer rules for desktop cursor */
-@media (pointer: fine) {
-  body, a, button, input, textarea, select, [role="button"] {
-    cursor: none !important;
-  }
-}
+/* Custom Follower styling */
+

@@ -11,7 +11,7 @@ export const CustomCursor = () => {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth fluid spring physics for outer follower halo (curtisdesignr.me spec)
+  // Smooth fluid spring follower halo around native PC cursor
   const springConfig = { damping: 24, stiffness: 380, mass: 0.2 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
@@ -67,7 +67,7 @@ export const CustomCursor = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden">
-      {/* Outer Follower Ring - curtisdesignr.me style thin halo (36px) */}
+      {/* Outer Follower Ring - Prominent w-12 h-12 halo around native PC cursor */}
       <motion.div
         style={{
           x: smoothX,
@@ -76,39 +76,23 @@ export const CustomCursor = () => {
           translateY: '-50%',
         }}
         animate={{
-          scale: isMouseDown ? 0.75 : isHovered ? 1.75 : 1,
-          borderColor: isHovered ? 'rgba(56, 189, 248, 0.85)' : 'rgba(255, 255, 255, 0.35)',
-          backgroundColor: isHovered ? 'rgba(56, 189, 248, 0.1)' : 'rgba(255, 255, 255, 0.02)',
+          scale: isMouseDown ? 0.75 : isHovered ? 1.6 : 1,
+          borderColor: isHovered ? 'rgba(56, 189, 248, 0.9)' : 'rgba(56, 189, 248, 0.45)',
+          backgroundColor: isHovered ? 'rgba(56, 189, 248, 0.12)' : 'rgba(56, 189, 248, 0.03)',
         }}
         transition={{ type: 'spring', stiffness: 350, damping: 24 }}
-        className="fixed top-0 left-0 w-9 h-9 rounded-full border border-white/35 backdrop-blur-[1px] flex items-center justify-center shadow-[0_0_15px_rgba(56,189,248,0.2)] will-change-transform"
+        className="fixed top-0 left-0 w-12 h-12 rounded-full border border-sky-400/50 backdrop-blur-xs flex items-center justify-center shadow-[0_0_20px_rgba(56,189,248,0.25)] will-change-transform"
       >
         {hoverText && (
           <motion.span
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="text-[9px] font-mono uppercase tracking-widest text-sky-300 font-bold px-1"
+            className="text-[10px] font-mono uppercase tracking-widest text-sky-300 font-bold px-1"
           >
             {hoverText}
           </motion.span>
         )}
       </motion.div>
-
-      {/* Inner Precision Dot - curtisdesignr.me style 8px solid dot */}
-      <motion.div
-        style={{
-          x: mouseX,
-          y: mouseY,
-          translateX: '-50%',
-          translateY: '-50%',
-        }}
-        animate={{
-          scale: isMouseDown ? 1.4 : isHovered ? 0.35 : 1,
-          backgroundColor: isHovered ? '#a855f7' : '#38bdf8',
-        }}
-        transition={{ type: 'spring', stiffness: 450, damping: 26 }}
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_10px_#38bdf8] will-change-transform"
-      />
     </div>
   );
 };
