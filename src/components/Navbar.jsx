@@ -1,162 +1,245 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cpu, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Cpu } from 'lucide-react';
 
 const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Contact', href: '#contact' }
+  { name: 'Home', href: '#home', number: '01' },
+  { name: 'About', href: '#about', number: '02' },
+  { name: 'Projects', href: '#projects', number: '03' },
+  { name: 'Experience', href: '#experience', number: '04' },
+  { name: 'Contact', href: '#contact', number: '05' },
 ];
 
+const socialLinks = [
+  { name: 'GitHub', href: 'https://github.com/AbinandBArjun' },
+  { name: 'LinkedIn', href: 'https://linkedin.com' },
+  { name: 'X / Twitter', href: 'https://x.com' },
+];
+
+const overlayVariants = {
+  closed: {
+    clipPath: 'circle(0% at calc(100% - 3.5rem) 3.5rem)',
+    transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
+  },
+  open: {
+    clipPath: 'circle(150% at calc(100% - 3.5rem) 3.5rem)',
+    transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
+  },
+};
+
+const linkVariants = {
+  closed: { opacity: 0, y: 60 },
+  open: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.2 + i * 0.07, duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
 export const Navbar = ({ onReplayLoader }) => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
-      // Scroll Spy for active section highlight
-      const sections = navLinks.map(link => link.href.substring(1));
-      const scrollPosition = window.scrollY + 200;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const handleNavClick = (href) => {
+    setMenuOpen(false);
+    setTimeout(() => {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 400);
+  };
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'py-3 bg-[#07090e]/80 backdrop-blur-xl border-b border-white/10 shadow-2xl'
-          : 'py-6 bg-transparent'
-      }`}
-    >
-      <div className="container flex items-center justify-between">
-        {/* Brand Logo */}
-        <a href="#home" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-purple-600 p-[1px] shadow-[0_0_15px_rgba(56,189,248,0.3)] transition-transform group-hover:scale-105">
+    <>
+      {/* ── Top Bar ── */}
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+        className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-6 md:px-12 py-5"
+      >
+        {/* Logo */}
+        <a
+          href="#home"
+          onClick={() => setMenuOpen(false)}
+          className="flex items-center gap-3 group z-[61]"
+        >
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-purple-600 p-[1px] shadow-[0_0_15px_rgba(56,189,248,0.3)] transition-transform group-hover:scale-105">
             <div className="w-full h-full bg-[#07090e] rounded-[11px] flex items-center justify-center">
-              <Cpu className="w-5 h-5 text-sky-400 group-hover:rotate-180 transition-transform duration-700" />
+              <Cpu className="w-4 h-4 text-sky-400 group-hover:rotate-180 transition-transform duration-700" />
             </div>
           </div>
           <div>
-            <span className="font-heading font-bold text-lg tracking-wider text-white flex items-center gap-1">
+            <span className="font-heading font-bold text-base tracking-wider text-white flex items-center gap-1">
               ABINAND<span className="text-sky-400">.AI</span>
             </span>
-            <span className="text-[10px] font-mono text-slate-400 block -mt-1">
+            <span className="text-[9px] font-mono text-slate-400 block -mt-0.5">
               AI ENGINEER
             </span>
           </div>
         </a>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-full border border-white/10 backdrop-blur-md">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.href.substring(1);
-            return (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`relative px-4 py-1.5 text-sm font-medium rounded-full transition-colors duration-200 ${
-                  isActive ? 'text-white' : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-sky-500/20 border border-sky-500/40 rounded-full"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{link.name}</span>
-              </a>
-            );
-          })}
-        </nav>
-
-        {/* CTA Button & Loader Replay */}
-        <div className="hidden md:flex items-center gap-3">
-          {onReplayLoader && (
-            <button
-              onClick={onReplayLoader}
-              title="Replay Loading Screen"
-              className="px-3 py-2 text-xs font-mono rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-white/10 text-slate-400 hover:text-sky-300 transition-all flex items-center gap-1.5 cursor-pointer"
-            >
-              <span>[ Replay Loader ]</span>
-            </button>
-          )}
-          <a
-            href="#contact"
-            className="group px-4 py-2 text-xs font-mono rounded-xl bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-300 flex items-center gap-1.5 transition-all shadow-[0_0_15px_rgba(56,189,248,0.15)]"
-          >
-            <span className="pulse-emerald" />
-            <span>Connect</span>
-            <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
-        </div>
-
-        {/* Mobile Hamburger Toggle */}
+        {/* Menu Toggle Button */}
         <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-slate-300 hover:text-white bg-slate-800/60 rounded-xl border border-white/10"
+          onClick={() => setMenuOpen((v) => !v)}
+          className="relative z-[61] flex items-center gap-2.5 cursor-pointer group"
+          aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-slate-400 group-hover:text-white transition-colors duration-200 select-none">
+            {menuOpen ? 'Close' : 'Menu'}
+          </span>
+          <div className="flex flex-col justify-center items-end gap-[5px]" style={{ width: '28px', height: '28px' }}>
+            <motion.span
+              animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.35, ease: [0.76, 0, 0.24, 1] }}
+              className="block origin-center"
+              style={{ height: '1.5px', width: '24px', background: menuOpen ? 'white' : 'rgba(148,163,184,0.8)' }}
+            />
+            <motion.span
+              animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.2 }}
+              className="block origin-right"
+              style={{ height: '1.5px', width: '16px', background: 'rgba(148,163,184,0.8)' }}
+            />
+            <motion.span
+              animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.35, ease: [0.76, 0, 0.24, 1] }}
+              className="block origin-center"
+              style={{ height: '1.5px', width: '24px', background: menuOpen ? 'white' : 'rgba(148,163,184,0.8)' }}
+            />
+          </div>
         </button>
-      </div>
+      </motion.header>
 
-      {/* Mobile Drawer Menu */}
+      {/* ── Fullscreen Overlay Menu ── */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#07090e]/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden"
+            key="fullscreen-menu"
+            variants={overlayVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="fixed inset-0 z-[55] flex flex-col overflow-hidden"
+            style={{ background: '#05070c', willChange: 'clip-path' }}
           >
-            <div className="container py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-slate-300 hover:text-sky-400 py-2 text-base font-medium border-b border-white/5 flex items-center justify-between"
-                >
-                  <span>{link.name}</span>
-                  <ArrowUpRight className="w-4 h-4 text-slate-500" />
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mt-2 w-full py-3 rounded-xl bg-gradient-to-r from-sky-500 to-purple-600 text-white font-medium text-center text-sm flex items-center justify-center gap-2"
-              >
-                <span>Get in Touch</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-            </div>
+            {/* Subtle grid texture */}
+            <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+
+            {/* Top accent line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: 'easeInOut' }}
+              className="absolute top-0 left-0 right-0 origin-left"
+              style={{ height: '1px', background: 'linear-gradient(to right, transparent, rgba(56,189,248,0.4), transparent)' }}
+            />
+
+            {/* Nav Links */}
+            <nav className="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-28 pt-28 pb-4">
+              <ul>
+                {navLinks.map((link, i) => (
+                  <motion.li
+                    key={link.name}
+                    custom={i}
+                    variants={linkVariants}
+                    initial="closed"
+                    animate="open"
+                    exit={{ opacity: 0, y: -30, transition: { duration: 0.15, delay: i * 0.02 } }}
+                    className="border-b"
+                    style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+                    onMouseEnter={() => setHoveredIndex(i)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
+                    <a
+                      href={link.href}
+                      onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+                      className="flex items-center justify-between py-4 md:py-5 lg:py-6"
+                    >
+                      <div className="flex items-baseline gap-5 md:gap-7">
+                        <motion.span
+                          animate={{ color: hoveredIndex === i ? '#38bdf8' : 'rgba(255,255,255,0.2)' }}
+                          className="font-mono text-xs tracking-widest"
+                        >
+                          {link.number}
+                        </motion.span>
+                        <motion.span
+                          animate={{
+                            WebkitTextStroke: hoveredIndex === i ? '1px rgba(255,255,255,0.85)' : '0px transparent',
+                            color: hoveredIndex === i ? 'transparent' : 'white',
+                            letterSpacing: hoveredIndex === i ? '0.04em' : '-0.02em',
+                          }}
+                          transition={{ duration: 0.25, ease: 'easeOut' }}
+                          className="font-heading font-bold leading-none"
+                          style={{ fontSize: 'clamp(2.2rem, 7vw, 6.5rem)' }}
+                        >
+                          {link.name}
+                        </motion.span>
+                      </div>
+
+                      <motion.span
+                        animate={{ x: hoveredIndex === i ? 0 : 16, opacity: hoveredIndex === i ? 1 : 0 }}
+                        transition={{ duration: 0.22, ease: 'easeOut' }}
+                        className="text-sky-400 font-thin hidden sm:block"
+                        style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}
+                      >
+                        ↗
+                      </motion.span>
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Footer bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.4, ease: 'easeOut' }}
+              className="px-8 md:px-16 lg:px-28 pb-8 pt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+              style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+            >
+              <div className="flex items-center gap-6 md:gap-8">
+                {socialLinks.map((s) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-slate-500 hover:text-sky-400 tracking-widest uppercase transition-colors duration-200"
+                    style={{ fontSize: '10px' }}
+                  >
+                    {s.name}
+                  </a>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-4">
+                {onReplayLoader && (
+                  <button
+                    onClick={() => { setMenuOpen(false); setTimeout(onReplayLoader, 350); }}
+                    className="font-mono text-slate-600 hover:text-sky-400 tracking-widest uppercase transition-colors duration-200 cursor-pointer"
+                    style={{ fontSize: '10px' }}
+                  >
+                    [ Replay Loader ]
+                  </button>
+                )}
+                <div className="flex items-center gap-2">
+                  <span className="pulse-emerald" />
+                  <span className="font-mono text-slate-500 tracking-widest uppercase" style={{ fontSize: '10px' }}>
+                    Available for Work
+                  </span>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 };
+
