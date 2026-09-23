@@ -5,6 +5,7 @@ import { LoadingScreen } from './components/LoadingScreen';
 import { CustomCursor } from './components/CustomCursor';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { PageTransition } from './components/PageTransition';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ProjectsPage } from './pages/ProjectsPage';
@@ -25,11 +26,11 @@ function AppRoutes() {
 
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-          <Route path="/"           element={<HomePage />} />
-          <Route path="/about"      element={<AboutPage />} />
-          <Route path="/projects"   element={<ProjectsPage />} />
-          <Route path="/experience" element={<ExperiencePage />} />
-          <Route path="/contact"    element={<ContactPage />} />
+          <Route path="/"           element={<PageTransition><HomePage /></PageTransition>} />
+          <Route path="/about"      element={<PageTransition><AboutPage /></PageTransition>} />
+          <Route path="/projects"   element={<PageTransition><ProjectsPage /></PageTransition>} />
+          <Route path="/experience" element={<PageTransition><ExperiencePage /></PageTransition>} />
+          <Route path="/contact"    element={<PageTransition><ContactPage /></PageTransition>} />
         </Routes>
       </AnimatePresence>
 
