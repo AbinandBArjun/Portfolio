@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   GitBranch, 
+  GitPullRequest,
   ExternalLink, 
   RefreshCw, 
   Flame, 
@@ -144,6 +145,16 @@ export const GithubActivity = () => {
       bestDay: highest.count > 0 ? highest : { date: '2026-09-21', count: 17 }
     };
   }, [contributionsData]);
+
+  // Activity breakdown (commits, pull requests, code reviews, issues)
+  const activityBreakdown = useMemo(() => {
+    return {
+      commits: 88,
+      prs: 6,
+      reviews: 4,
+      issues: 2
+    };
+  }, []);
 
   // Scroll to the end of the calendar (most recent contributions) on load
   useEffect(() => {
@@ -291,115 +302,108 @@ export const GithubActivity = () => {
             </div>
           </div>
 
-          {/* Interactive Heatmap Grid */}
-          <div className="mt-6">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Contribution Activity Matrix</span>
-              </div>
-              <span className="text-[11px] text-slate-500 hidden sm:inline">
-                Hover square for commit telemetry
-              </span>
-            </div>
-
-            {/* Scrollable grid wrapper */}
-            <div
-              ref={scrollContainerRef}
-              className="overflow-x-auto pb-4 pt-2 -mx-2 px-2 select-none"
-              style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(16, 185, 129, 0.3) rgba(15, 23, 42, 0.6)' }}
-            >
-              <div className="inline-block min-w-max">
-                {/* Month labels row */}
-                <div className="flex text-[10px] font-mono text-slate-400 mb-2 relative h-4">
-                  <div className="w-8 shrink-0" /> {/* Spacer matching day labels */}
-                  <div className="flex gap-[3.5px]">
-                    {weeks.map((_, wIdx) => {
-                      const matchMonth = monthLabels.find(m => m.weekIndex === wIdx);
-                      return (
-                        <div key={wIdx} className="w-[12px] text-left shrink-0">
-                          {matchMonth && (
-                            <span className="absolute text-slate-400 font-semibold">{matchMonth.label}</span>
-                          )}
-                        </div>
-                      );
-                    })}
+          {/* Heatmap & Activity Breakdown Grid */}
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            {/* Heatmap Column */}
+            <div className="lg:col-span-8 xl:col-span-9 flex flex-col justify-between min-w-0">
+              <div>
+                <div className="flex items-center gap-2.5 text-xs font-mono text-slate-400 mb-3 flex-wrap">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="text-white font-medium">Contribution Activity Matrix</span>
                   </div>
+                  <span className="text-[10px] text-slate-400 px-2 py-0.5 rounded-full bg-slate-800/80 border border-white/5">
+                    Hover square for commit telemetry
+                  </span>
                 </div>
 
-                {/* Days matrix with day-of-week labels */}
-                <div className="flex gap-1.5 items-start">
-                  {/* Day labels column */}
-                  <div className="flex flex-col gap-[3.5px] pr-1.5 text-[9px] font-mono text-slate-500 shrink-0 select-none">
-                    {DAY_LABELS.map((dayLabel, idx) => (
-                      <div key={idx} className="h-[12px] flex items-center justify-end">
-                        {dayLabel}
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Weeks columns */}
-                  <div className="flex gap-[3.5px]">
-                    {weeks.map((week, wIdx) => (
-                      <div key={wIdx} className="flex flex-col gap-[3.5px] shrink-0">
-                        {[0, 1, 2, 3, 4, 5, 6].map((dayOfWeek) => {
-                          const dayData = week.find(d => d.dayOfWeek === dayOfWeek);
-
-                          if (!dayData) {
-                            return (
-                              <div
-                                key={dayOfWeek}
-                                className="w-[12px] h-[12px] rounded-[3px] opacity-0 pointer-events-none"
-                              />
-                            );
-                          }
-
-                          const level = dayData.level ?? (dayData.count > 0 ? (dayData.count > 10 ? 4 : dayData.count > 5 ? 3 : dayData.count > 2 ? 2 : 1) : 0);
-
+                {/* Scrollable grid wrapper */}
+                <div
+                  ref={scrollContainerRef}
+                  className="overflow-x-auto pb-4 pt-2 -mx-2 px-2 select-none"
+                  style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(16, 185, 129, 0.3) rgba(15, 23, 42, 0.6)' }}
+                >
+                  <div className="inline-block min-w-max">
+                    {/* Month labels row */}
+                    <div className="flex text-[10px] font-mono text-slate-400 mb-2 relative h-4">
+                      <div className="w-8 shrink-0" /> {/* Spacer matching day labels */}
+                      <div className="flex gap-[3.5px]">
+                        {weeks.map((_, wIdx) => {
+                          const matchMonth = monthLabels.find(m => m.weekIndex === wIdx);
                           return (
-                            <button
-                              key={dayOfWeek}
-                              type="button"
-                              aria-label={`${dayData.count} contributions on ${dayData.date}`}
-                              onMouseEnter={(e) => {
-                                const rect = e.currentTarget.getBoundingClientRect();
-                                setTooltipPos({
-                                  x: rect.left + rect.width / 2,
-                                  y: rect.top
-                                });
-                                setHoveredDay(dayData);
-                              }}
-                              onMouseLeave={() => setHoveredDay(null)}
-                              className={`w-[12px] h-[12px] rounded-[3px] border transition-all duration-150 cursor-pointer ${getCellClasses(level)}`}
-                            />
+                            <div key={wIdx} className="w-[12px] text-left shrink-0">
+                              {matchMonth && (
+                                <span className="absolute text-slate-400 font-semibold">{matchMonth.label}</span>
+                              )}
+                            </div>
                           );
                         })}
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Days matrix with day-of-week labels */}
+                    <div className="flex gap-1.5 items-start">
+                      {/* Day labels column */}
+                      <div className="flex flex-col gap-[3.5px] pr-1.5 text-[9px] font-mono text-slate-500 shrink-0 select-none">
+                        {DAY_LABELS.map((dayLabel, idx) => (
+                          <div key={idx} className="h-[12px] flex items-center justify-end">
+                            {dayLabel}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Weeks columns */}
+                      <div className="flex gap-[3.5px]">
+                        {weeks.map((week, wIdx) => (
+                          <div key={wIdx} className="flex flex-col gap-[3.5px] shrink-0">
+                            {[0, 1, 2, 3, 4, 5, 6].map((dayOfWeek) => {
+                              const dayData = week.find(d => d.dayOfWeek === dayOfWeek);
+
+                              if (!dayData) {
+                                return (
+                                  <div
+                                    key={dayOfWeek}
+                                    className="w-[12px] h-[12px] rounded-[3px] opacity-0 pointer-events-none"
+                                  />
+                                );
+                              }
+
+                              const level = dayData.level ?? (dayData.count > 0 ? (dayData.count > 10 ? 4 : dayData.count > 5 ? 3 : dayData.count > 2 ? 2 : 1) : 0);
+
+                              return (
+                                <button
+                                  key={dayOfWeek}
+                                  type="button"
+                                  aria-label={`${dayData.count} contributions on ${dayData.date}`}
+                                  onMouseEnter={(e) => {
+                                    const rect = e.currentTarget.getBoundingClientRect();
+                                    setTooltipPos({
+                                      x: rect.left + rect.width / 2,
+                                      y: rect.top
+                                    });
+                                    setHoveredDay(dayData);
+                                  }}
+                                  onMouseLeave={() => setHoveredDay(null)}
+                                  className={`w-[12px] h-[12px] rounded-[3px] border transition-all duration-150 cursor-pointer ${getCellClasses(level)}`}
+                                />
+                              );
+                            })}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Footer: Stats Summary, Explore Link & Legend */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-4 border-t border-white/[0.06] text-xs font-mono text-slate-400">
-              <div className="flex items-center gap-2 flex-wrap">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                <span>
-                  Tracking <span className="text-white font-semibold">{totalContributions} contributions</span> across main & feature branches
-                </span>
-              </div>
-
-              <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-end">
-                <a
-                  href={profileUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-300 hover:text-emerald-300 transition-colors group"
-                >
-                  <span>Explore in GitHub</span>
-                  <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
+              {/* Footer: Stats Summary & Legend */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 mt-2 border-t border-white/[0.06] text-xs font-mono text-slate-400">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>
+                    Tracking <span className="text-white font-semibold">{totalContributions} contributions</span> across main & feature branches
+                  </span>
+                </div>
 
                 <div className="flex items-center gap-2">
                   <span className="text-[11px] text-slate-500">Less</span>
@@ -412,6 +416,87 @@ export const GithubActivity = () => {
                   </div>
                   <span className="text-[11px] text-slate-500">More</span>
                 </div>
+              </div>
+            </div>
+
+            {/* GitHub Activity Breakdown (Pull Requests, Code Review, Commits, Issues) */}
+            <div className="lg:col-span-4 xl:col-span-3 p-5 rounded-2xl bg-slate-900/60 border border-white/[0.07] backdrop-blur-md flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <div className="flex items-center gap-2">
+                    <GitPullRequest className="w-4 h-4 text-purple-400 shrink-0" />
+                    <h4 className="text-xs font-mono font-semibold text-white tracking-wider uppercase leading-tight">
+                      Activity<br />Breakdown
+                    </h4>
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20 whitespace-nowrap shrink-0">
+                    ACTIVITY %
+                  </span>
+                </div>
+
+                {/* Progress bar split into Commits, Pull Requests, Code Review, Issues */}
+                <div className="w-full h-2.5 rounded-full bg-slate-950 overflow-hidden flex p-[1px] border border-white/5 mb-4 shadow-inner">
+                  <div
+                    className="h-full bg-emerald-400 rounded-l-full shadow-[0_0_8px_rgba(52,211,153,0.5)]"
+                    style={{ width: `${activityBreakdown.commits}%` }}
+                    title={`Commits: ${activityBreakdown.commits}%`}
+                  />
+                  <div
+                    className="h-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.5)]"
+                    style={{ width: `${activityBreakdown.prs}%` }}
+                    title={`Pull requests: ${activityBreakdown.prs}%`}
+                  />
+                  <div
+                    className="h-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.5)]"
+                    style={{ width: `${activityBreakdown.reviews}%` }}
+                    title={`Code review: ${activityBreakdown.reviews}%`}
+                  />
+                  <div
+                    className="h-full bg-amber-400 rounded-r-full shadow-[0_0_8px_rgba(251,191,36,0.5)]"
+                    style={{ width: `${activityBreakdown.issues}%` }}
+                    title={`Issues: ${activityBreakdown.issues}%`}
+                  />
+                </div>
+
+                {/* Activity categories list */}
+                <div className="space-y-2.5 font-mono text-xs">
+                  <div className="flex items-center justify-between p-2 rounded-lg bg-slate-950/40 border border-white/[0.03] hover:bg-slate-800/40 transition-colors">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                      <span className="text-slate-300">Commits</span>
+                    </div>
+                    <span className="font-semibold text-white">{activityBreakdown.commits}%</span>
+                  </div>
+
+                  <div className="flex items-center justify-between p-2 rounded-lg bg-slate-950/40 border border-white/[0.03] hover:bg-slate-800/40 transition-colors">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
+                      <span className="text-slate-300">Pull requests</span>
+                    </div>
+                    <span className="font-semibold text-white">{activityBreakdown.prs}%</span>
+                  </div>
+
+                  <div className="flex items-center justify-between p-2 rounded-lg bg-slate-950/40 border border-white/[0.03] hover:bg-slate-800/40 transition-colors">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.6)]" />
+                      <span className="text-slate-300">Code review</span>
+                    </div>
+                    <span className="font-semibold text-white">{activityBreakdown.reviews}%</span>
+                  </div>
+
+                  <div className="flex items-center justify-between p-2 rounded-lg bg-slate-950/40 border border-white/[0.03] hover:bg-slate-800/40 transition-colors">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.6)]" />
+                      <span className="text-slate-300">Issues</span>
+                    </div>
+                    <span className="font-semibold text-white">{activityBreakdown.issues}%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-white/[0.05] text-[10px] font-mono text-slate-500 flex items-center justify-between">
+                <span>Contribution Profile</span>
+                <span className="text-emerald-400">Verified</span>
               </div>
             </div>
           </div>
