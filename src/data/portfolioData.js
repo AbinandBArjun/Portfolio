@@ -9,7 +9,7 @@ export const portfolioData = {
     email: "abinandbarjun7@gmail.com", // updateable by user
     github: "https://github.com/AbinandBArjun",
     linkedin: "https://www.linkedin.com/in/abinand-b-arjun",
-    twitter: "",
+    twitter: "https://x.com/Abinandbarjun",
     huggingface: "",
     resumeUrl: ""
   },
