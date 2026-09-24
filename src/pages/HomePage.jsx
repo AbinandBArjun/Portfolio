@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Hero } from '../components/Hero';
 import { BentoAbout } from '../components/BentoAbout';
+import { GithubActivity } from '../components/GithubActivity';
 
 export const HomePage = () => {
   const location = useLocation();
@@ -14,6 +15,13 @@ export const HomePage = () => {
           elem.scrollIntoView({ behavior: 'smooth' });
         }, 150);
       }
+    } else if (location.hash === '#github-activity' || location.hash === '#activity') {
+      const elem = document.getElementById('github-activity');
+      if (elem) {
+        setTimeout(() => {
+          elem.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      }
     }
   }, [location.hash]);
 
@@ -21,6 +29,7 @@ export const HomePage = () => {
     <main>
       <Hero />
       <BentoAbout />
+      <GithubActivity />
     </main>
   );
 };
