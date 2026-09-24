@@ -165,18 +165,8 @@ export const Navbar = ({ onReplayLoader }) => {
               {/* Subtle top ambient glow */}
               <div className="absolute top-0 right-0 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Drawer Header */}
-              <div className="px-8 pt-8 pb-4 flex items-center justify-between border-b border-white/[0.06] relative z-10">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-                  <span className="font-mono text-[10px] tracking-[0.25em] text-slate-400 uppercase">
-                    Navigation
-                  </span>
-                </div>
-                <span className="font-mono text-[10px] text-slate-500">
-                  {navLinks.find((l) => l.to === location.pathname)?.name || 'Exploring'}
-                </span>
-              </div>
+              {/* Drawer Header Divider */}
+              <div className="h-[72px] border-b border-white/[0.06] relative z-10" />
 
               {/* Navigation Links */}
               <nav className="flex-1 flex flex-col justify-center px-8 py-6 relative z-10">
