@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sparkles, Download } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
@@ -7,6 +8,7 @@ import { TextScramble } from './react-bits/TextScramble';
 import { ShinyButton } from './react-bits/ShinyButton';
 
 export const Hero = () => {
+  const navigate = useNavigate();
   const { personal, stats } = portfolioData;
 
   const quickBadges = [
@@ -72,9 +74,7 @@ export const Hero = () => {
           <ShinyButton
             variant="primary"
             icon={Sparkles}
-            onClick={() => {
-              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={() => navigate('/projects')}
           >
             Explore AI Demos
           </ShinyButton>
@@ -84,7 +84,7 @@ export const Hero = () => {
             icon={Download}
             onClick={() => personal.resumeUrl
               ? window.open(personal.resumeUrl, '_blank', 'noopener,noreferrer')
-              : document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              : navigate('/contact')}
           >
             {personal.resumeUrl ? 'Resume' : 'Request Resume'}
           </ShinyButton>

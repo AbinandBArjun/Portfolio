@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { LoadingScreen } from './components/LoadingScreen';
 import { CustomCursor } from './components/CustomCursor';
@@ -7,7 +7,6 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { PageTransition } from './components/PageTransition';
 import { HomePage } from './pages/HomePage';
-import { AboutPage } from './pages/AboutPage';
 import { ProjectsPage } from './pages/ProjectsPage';
 import { ExperiencePage } from './pages/ExperiencePage';
 import { ContactPage } from './pages/ContactPage';
@@ -27,7 +26,7 @@ function AppRoutes() {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/"           element={<PageTransition><HomePage /></PageTransition>} />
-          <Route path="/about"      element={<PageTransition><AboutPage /></PageTransition>} />
+          <Route path="/about"      element={<Navigate to="/#about" replace />} />
           <Route path="/projects"   element={<PageTransition><ProjectsPage /></PageTransition>} />
           <Route path="/experience" element={<PageTransition><ExperiencePage /></PageTransition>} />
           <Route path="/contact"    element={<PageTransition><ContactPage /></PageTransition>} />

@@ -10,33 +10,26 @@ const ROUTE_METADATA = {
     category: 'INTELLIGENCE ARCHITECTURE & RESEARCH',
     tag: 'T1 // PRIMARY NODE'
   },
-  '/about': {
-    number: '02',
-    code: 'BIO.GRAPH',
-    title: 'ABOUT & STACK',
-    category: 'AUTONOMOUS AGENTS & ML ARCHITECTURE',
-    tag: 'T2 // PROFILE SPEC'
-  },
   '/projects': {
-    number: '03',
+    number: '02',
     code: 'DEV.DEPLOY',
     title: 'WORK & PROJECTS',
     category: 'PRODUCTION RAG & FINE-TUNED MODELS',
-    tag: 'T3 // ARTIFACT ARCHIVE'
+    tag: 'T2 // ARTIFACT ARCHIVE'
   },
   '/experience': {
-    number: '04',
+    number: '03',
     code: 'OPS.TRACK',
     title: 'EXPERIENCE',
     category: 'ENGINEERING RESEARCH & MILESTONES',
-    tag: 'T4 // TELEMETRY'
+    tag: 'T3 // TELEMETRY'
   },
   '/contact': {
-    number: '05',
+    number: '04',
     code: 'COMM.LINK',
     title: 'DISPATCH & CONTACT',
     category: 'SECURE COLLABORATION & INQUIRY',
-    tag: 'T5 // DISPATCH'
+    tag: 'T4 // DISPATCH'
   },
 };
 

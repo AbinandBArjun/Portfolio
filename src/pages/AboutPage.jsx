@@ -1,8 +1,4 @@
 import React from 'react';
-import { BentoAbout } from '../components/BentoAbout';
+import { Navigate } from 'react-router-dom';
 
-export const AboutPage = () => (
-  <main>
-    <BentoAbout />
-  </main>
-);
+export const AboutPage = () => <Navigate to="/#about" replace />;

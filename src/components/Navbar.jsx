@@ -6,10 +6,9 @@ import { portfolioData } from '../data/portfolioData';
 
 const navLinks = [
   { name: 'Home',       to: '/',           number: '01' },
-  { name: 'About',      to: '/about',      number: '02' },
-  { name: 'Projects',   to: '/projects',   number: '03' },
-  { name: 'Experience', to: '/experience', number: '04' },
-  { name: 'Contact',    to: '/contact',    number: '05' },
+  { name: 'Projects',   to: '/projects',   number: '02' },
+  { name: 'Experience', to: '/experience', number: '03' },
+  { name: 'Contact',    to: '/contact',    number: '04' },
 ];
 
 const socialLinks = [
@@ -77,6 +76,10 @@ export const Navbar = ({ onReplayLoader }) => {
 
   const handleNavClick = (to) => {
     setMenuOpen(false);
+    if (to === '/' && location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     navigate(to);
   };
 
