@@ -1,66 +1,40 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Sparkles, ExternalLink } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { SpotlightCard } from './react-bits/SpotlightCard';
 
 export const Projects = () => {
   const { projects } = portfolioData;
-  const [selectedCategory, setSelectedCategory] = useState('All');
-
-  const categories = ['All', 'Machine Learning', 'Cybersecurity', 'Web Development'];
-
-  const filteredProjects = selectedCategory === 'All'
-    ? projects
-    : projects.filter(p => p.category === selectedCategory);
 
   return (
     <section id="projects" className="py-24 relative z-10">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Title */}
-        <div className="text-center max-w-2xl mx-auto mb-10">
+        <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-mono mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Featured Repositories</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
             Selected <span className="text-gradient">Projects</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base mt-3">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3">
             Explore a collection of my recent GitHub work spanning multimodal AI frameworks, RAG systems, cybersecurity architectures, and modern web applications.
           </p>
         </div>
 
-        {/* Filter Category Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer ${
-                selectedCategory === category
-                  ? 'bg-sky-500/15 text-sky-600 dark:text-sky-300 border border-sky-500/40 shadow-[0_0_15px_rgba(56,189,248,0.2)] font-semibold'
-                  : 'bg-[#ede9e1] dark:bg-slate-900/60 text-stone-600 dark:text-slate-400 border border-stone-300/80 dark:border-white/5 hover:text-stone-900 dark:hover:text-slate-200 hover:border-stone-400 dark:hover:border-white/10'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Project Cards Grid - No pictures, matching the uploaded screenshot scheme */}
+        {/* Project Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.3 }}
-                className="h-full"
-              >
+          {projects.map((project, idx) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              className="h-full"
+            >
                 <a
                   href={project.githubUrl}
                   target="_blank"
@@ -103,7 +77,6 @@ export const Projects = () => {
                 </a>
               </motion.div>
             ))}
-          </AnimatePresence>
         </div>
       </div>
     </section>
