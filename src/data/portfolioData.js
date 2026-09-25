@@ -42,68 +42,79 @@ export const portfolioData = {
 
   projects: [
     {
-      id: "multimodal-rag",
-      title: "Nexus RAG: Multimodal Enterprise Knowledge Graph",
-      category: "LLMs & RAG",
-      shortDesc: "End-to-end RAG system combining dense vector search, BM25 sparse re-ranking, and vision-language models for instant enterprise document querying.",
-      image: "/projects/rag-assistant.jpg",
-      tags: ["PyTorch", "LlamaIndex", "Qdrant", "vLLM", "FastAPI"],
+      id: "vita-ai-depression-detection",
+      title: "VITA AI",
+      category: "Machine Learning",
+      shortDesc: "A real-time AI framework for depression detection, prediction, and prevention using multimodal data streams. Analyzes mobile behavioral patterns, facial emotion recognition (FER), text sentiment, and physiological HRV indicators. Features Explainable AI (XAI) and autonomous intervention recommendations.",
+      tags: ["FastAPI", "Flutter", "PyTorch", "Multimodal AI", "XAI"],
       highlights: [
-        "Sub-150ms query response time with hybrid sparse-dense vector retrieval.",
-        "Integrated Vision-LLM parser for querying charts, tables, and PDF diagrams.",
-        "Custom LoRA fine-tuned Llama-3 8B model specialized for financial & legal parsing.",
-        "Evaluated with Ragas benchmark achieving 94.2% context precision."
+        "Multimodal telemetry fusion combining mobile behavior analytics, night usage patterns, and digital unlock routines.",
+        "Real-time Facial Emotion Recognition (FER) and text sentiment analysis analyzing micro-expressions and emotional tone.",
+        "Heart Rate Variability (HRV) physiological signal analysis to derive a unified, clinical-grade depression-risk score.",
+        "Explainable AI (XAI) engine providing transparent risk factor interpretability and agentic wellness recommendations."
       ],
       demoUrl: "",
-      githubUrl: "https://github.com/abinand/nexus-multimodal-rag"
+      githubUrl: "https://github.com/AbinandBArjun/VITA-AI-Intelligent-Depression-Detection-Prediction-and-Prevention-System"
     },
     {
-      id: "ai-agent-orchestrator",
-      title: "NeuroFlow: Autonomous AI Agent Workflow Engine",
-      category: "AI Agents",
-      shortDesc: "Distributed agentic framework executing complex multi-step reasoning, tool usage, and auto-correcting code synthesis.",
-      image: "/projects/ai-agent.jpg",
-      tags: ["LangGraph", "Python", "GPT-4o / Claude 3.5", "Redis", "Docker"],
+      id: "my-ai-knowledge-rag",
+      title: "MyAI Assistant",
+      category: "Machine Learning",
+      shortDesc: "Full-stack personal AI knowledge assistant integrating document ingestion, vector embeddings, and RAG-driven contextual synthesis. Queries notes, articles, and live news feeds with sub-second semantic retrieval and interactive chat streaming.",
+      tags: ["FastAPI", "React", "TypeScript", "LangChain", "RAG"],
       highlights: [
-        "Node-based workflow builder supporting dynamic human-in-the-loop validation.",
-        "Self-healing agent loop that catches code compilation errors and self-corrects.",
-        "Asynchronous parallel tool invocation reducing multi-agent step latency by 45%.",
-        "Built-in token streaming telemetry and token budget guardrails."
+        "End-to-end vector embeddings pipeline for semantic document chunking, indexing, and high-precision similarity retrieval.",
+        "Context-aware conversational RAG interface delivering sub-second response times across personal notes, web articles, and live feeds.",
+        "Asynchronous FastAPI backend with typed Pydantic models, CORS streaming middleware, and automated test coverage.",
+        "Modern React + TypeScript frontend with Vite HMR, custom prompt controls, and interactive chat streaming."
       ],
       demoUrl: "",
-      githubUrl: "https://github.com/abinand/neuroflow-agent-engine"
+      githubUrl: "https://github.com/AbinandBArjun/MyAI"
     },
     {
-      id: "realtime-cv-pipeline",
-      title: "Aether CV: Edge Real-Time Object Detection & Analytics",
-      category: "Computer Vision",
-      shortDesc: "High-throughput video stream analysis pipeline running TensorRT optimized YOLOv8 and multi-object tracking.",
-      image: "/projects/computer-vision.jpg",
-      tags: ["OpenCV", "TensorRT", "YOLOv8", "CUDA", "C++", "Python"],
+      id: "cyber-shield-security",
+      title: "CyberShield",
+      category: "Cybersecurity",
+      shortDesc: "An advanced cybersecurity and access control platform engineered with dynamic IP whitelisting, automated brute-force threat defense, and passwordless FIDO2/WebAuthn passkey authentication. Includes MongoDB threat logging and live telemetry charts.",
+      tags: ["Node.js", "Express", "MongoDB", "WebAuthn", "Security"],
       highlights: [
-        "Real-time processing at 60 FPS across 8 concurrent 4K camera feeds.",
-        "DeepSORT object tracking with persistent re-identification across camera frames.",
-        "TensorRT quantization reducing FP32 models to INT8 with under 1% mAP drop.",
-        "Exported live metrics feed via WebSockets for real-time monitoring dashboard."
+        "Dynamic IP Whitelisting & automated threat detection blocking malicious actors after failed authentication thresholds.",
+        "Passwordless passkey authentication integrating modern FIDO2 / WebAuthn security standards.",
+        "Live security threat telemetry dashboard with Chart.js analytics for real-time anomaly monitoring.",
+        "Granular role-based access control (RBAC) with MongoDB-backed audit logging and security event feeds."
       ],
       demoUrl: "",
-      githubUrl: "https://github.com/abinand/aether-cv-analytics"
+      githubUrl: "https://github.com/AbinandBArjun/Cyber-Shield"
     },
     {
-      id: "neural-fine-tuning-hub",
-      title: "NeuralForge: Parameter-Efficient Fine-Tuning Monitor",
-      category: "MLOps & Fine-Tuning",
-      shortDesc: "Comprehensive web platform for monitoring LoRA/QLoRA training runs, loss curves, VRAM utilization, and model quantizations.",
-      image: "/projects/fine-tuning.jpg",
-      tags: ["PyTorch", "Unsloth", "Weights & Biases", "React", "Ray Train"],
+      id: "expense-tracker-system",
+      title: "Expense Tracker",
+      category: "Web Development",
+      shortDesc: "A lightweight full-stack personal finance application with dynamic transaction management, categorical filtering, real-time expenditure calculations, and monthly analytical breakdowns. Built with optimized DOM manipulation and zero dependency overhead.",
+      tags: ["Node.js", "Express", "SQLite", "JavaScript", "REST API"],
       highlights: [
-        "Interactive hyperparameter tweaking dashboard integrated with W&B logging.",
-        "Supports 2x faster LLM fine-tuning speed using Unsloth & Triton kernels.",
-        "Automatic GGUF & AWQ quantization export pipeline for local edge inference.",
-        "VRAM optimization suite preventing CUDA Out-Of-Memory exceptions."
+        "Lightweight, zero-config relational SQLite backend with high-speed query execution for transaction logs.",
+        "Intuitive transaction lifecycle management supporting real-time addition, editing, categorization, and deletion.",
+        "Dynamic summary analytics providing monthly spending trends, category distributions, and budget tracking.",
+        "Clean, responsive vanilla JavaScript and CSS frontend with optimized DOM manipulation and zero dependency overhead."
       ],
       demoUrl: "",
-      githubUrl: "https://github.com/abinand/neuralforge-mlops"
+      githubUrl: "https://github.com/AbinandBArjun/Expense_Tracker"
+    },
+    {
+      id: "portfolio-developer-suite",
+      title: "Developer Portfolio",
+      category: "Web Development",
+      shortDesc: "A high-performance AI engineer developer portfolio with interactive terminal emulator, GitHub telemetry tracking, Spotlight shaders, Framer Motion animations, and modern glassmorphic interface.",
+      tags: ["React", "Vite", "Tailwind CSS", "Framer Motion", "GitHub API"],
+      highlights: [
+        "Interactive Spotlight card mechanics, smooth Framer Motion transitions, and glassmorphic UI aesthetics.",
+        "Custom interactive developer terminal emulator with command parser and system telemetry.",
+        "Live GitHub activity tracker fetching repository stats, commit frequencies, and language distributions in real time.",
+        "Fully responsive layout optimized for lighthouse performance and modern mobile viewports."
+      ],
+      demoUrl: "",
+      githubUrl: "https://github.com/AbinandBArjun/Portfolio"
     }
   ],
 
