@@ -39,8 +39,8 @@ export const Projects = () => {
               onClick={() => setSelectedCategory(category)}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer ${
                 selectedCategory === category
-                  ? 'bg-sky-500/20 text-sky-300 border border-sky-500/40 shadow-[0_0_15px_rgba(56,189,248,0.2)]'
-                  : 'bg-slate-900/60 text-slate-400 border border-white/5 hover:text-slate-200 hover:border-white/10'
+                  ? 'bg-sky-500/15 text-sky-600 dark:text-sky-300 border border-sky-500/40 shadow-[0_0_15px_rgba(56,189,248,0.2)] font-semibold'
+                  : 'bg-[#ede9e1] dark:bg-slate-900/60 text-stone-600 dark:text-slate-400 border border-stone-300/80 dark:border-white/5 hover:text-stone-900 dark:hover:text-slate-200 hover:border-stone-400 dark:hover:border-white/10'
               }`}
             >
               {category}
@@ -68,21 +68,21 @@ export const Projects = () => {
                   className="h-full block group focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-2xl"
                 >
                   <SpotlightCard
-                    className="h-full flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#13151b] hover:bg-[#181a24] border border-white/[0.08] hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.5)] cursor-pointer"
+                    className="h-full flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#13151b] hover:bg-slate-50 dark:hover:bg-[#181a24] border border-slate-200 dark:border-white/[0.08] hover:border-sky-400/40 dark:hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-[0_12px_30px_rgba(0,0,0,0.5)] cursor-pointer"
                     spotlightColor="rgba(56, 189, 248, 0.12)"
                   >
                     <div className="flex flex-col h-full justify-between">
                       <div>
                         {/* Header: Title + External Link Icon */}
                         <div className="flex items-start justify-between gap-3 mb-3.5">
-                          <h3 className="text-lg font-bold text-white group-hover:text-sky-300 transition-colors tracking-tight leading-snug">
+                          <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-300 transition-colors tracking-tight leading-snug">
                             {project.title}
                           </h3>
-                          <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 mt-0.5" />
+                          <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-sky-500 dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 mt-0.5" />
                         </div>
 
                         {/* Description */}
-                        <p className="text-slate-400 text-sm leading-relaxed mb-6 font-normal">
+                        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 font-normal">
                           {project.shortDesc}
                         </p>
                       </div>
@@ -92,7 +92,7 @@ export const Projects = () => {
                         {project.tags.map((tag, tIdx) => (
                           <span
                             key={tIdx}
-                            className="px-3.5 py-1 rounded-full text-xs font-mono bg-[#1e222d] text-slate-300 border border-white/[0.06] group-hover:border-white/10 transition-colors"
+                            className="px-3.5 py-1 rounded-full text-xs font-mono bg-slate-100 dark:bg-[#1e222d] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/[0.06] group-hover:border-sky-400/30 dark:group-hover:border-white/10 transition-colors"
                           >
                             {tag}
                           </span>
