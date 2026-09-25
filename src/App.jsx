@@ -11,13 +11,15 @@ import { ProjectsPage } from './pages/ProjectsPage';
 import { ExperiencePage } from './pages/ExperiencePage';
 import { ContactPage } from './pages/ContactPage';
 
+import { ThemeProvider } from './context/ThemeContext';
+
 // Inner component so useLocation works inside BrowserRouter
 function AppRoutes() {
   const location = useLocation();
   const [loaderKey, setLoaderKey] = useState(0);
 
   return (
-    <div className="relative min-h-screen bg-[#07090e] text-slate-100 overflow-x-hidden selection:bg-sky-500/30 selection:text-sky-300">
+    <div className="relative min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] overflow-x-hidden selection:bg-sky-500/30 selection:text-sky-400 transition-colors duration-300">
       <CustomCursor />
       {/* Loading screen only on home page */}
       {location.pathname === '/' && <LoadingScreen key={loaderKey} />}
@@ -40,9 +42,11 @@ function AppRoutes() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

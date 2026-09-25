@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Cpu, ArrowUpRight } from 'lucide-react';
+import { Cpu, ArrowUpRight, Sun, Moon } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import { useTheme } from '../context/ThemeContext';
 
 const navLinks = [
   { name: 'Home',       to: '/',           number: '01' },
@@ -38,6 +39,7 @@ const linkVariants = {
 };
 
 export const Navbar = ({ onReplayLoader }) => {
+  const { theme, toggleTheme, isDark } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const menuRef = useRef(null);
@@ -106,37 +108,71 @@ export const Navbar = ({ onReplayLoader }) => {
           </div>
         </Link>
 
-        <button
-          ref={toggleBtnRef}
-          onClick={() => setMenuOpen((v) => !v)}
-          className="relative z-[61] pointer-events-auto flex items-center gap-2.5 cursor-pointer group py-1.5 px-3 rounded-xl bg-slate-900/60 backdrop-blur-md border border-white/10 hover:border-sky-500/30 hover:bg-slate-800/80 transition-all shadow-lg"
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-        >
-          <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-slate-300 group-hover:text-white transition-colors duration-200 select-none">
-            {menuOpen ? 'Close' : 'Menu'}
-          </span>
-          <div className="flex flex-col justify-center items-end gap-[5px]" style={{ width: '22px', height: '20px' }}>
-            <motion.span
-              animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
-              className="block origin-center"
-              style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : 'rgba(255,255,255,0.9)' }}
-            />
-            <motion.span
-              animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
-              transition={{ duration: 0.2 }}
-              className="block origin-right"
-              style={{ height: '1.5px', width: '14px', background: 'rgba(255,255,255,0.9)' }}
-            />
-            <motion.span
-              animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
-              className="block origin-center"
-              style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : 'rgba(255,255,255,0.9)' }}
-            />
-          </div>
-        </button>
+        <div className="flex items-center gap-2.5 pointer-events-auto z-[61]">
+          {/* Light / Dark Mode Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-900/60 backdrop-blur-md border border-white/10 hover:border-sky-500/30 hover:bg-slate-800/80 transition-all shadow-lg cursor-pointer text-slate-300 hover:text-white group"
+            aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+            title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {isDark ? (
+                <motion.div
+                  key="sun"
+                  initial={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.7 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="moon"
+                  initial={{ rotate: 90, opacity: 0, scale: 0.7 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Moon className="w-4 h-4 text-sky-500 group-hover:-rotate-12 transition-transform" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </button>
+
+          <button
+            ref={toggleBtnRef}
+            onClick={() => setMenuOpen((v) => !v)}
+            className="flex items-center gap-2.5 cursor-pointer group py-1.5 px-3 rounded-xl bg-slate-900/60 backdrop-blur-md border border-white/10 hover:border-sky-500/30 hover:bg-slate-800/80 transition-all shadow-lg"
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-slate-300 group-hover:text-white transition-colors duration-200 select-none">
+              {menuOpen ? 'Close' : 'Menu'}
+            </span>
+            <div className="flex flex-col justify-center items-end gap-[5px]" style={{ width: '22px', height: '20px' }}>
+              <motion.span
+                animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
+                className="block origin-center"
+                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : 'rgba(255,255,255,0.9)' }}
+              />
+              <motion.span
+                animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.2 }}
+                className="block origin-right"
+                style={{ height: '1.5px', width: '14px', background: 'rgba(255,255,255,0.9)' }}
+              />
+              <motion.span
+                animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
+                className="block origin-center"
+                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : 'rgba(255,255,255,0.9)' }}
+              />
+            </div>
+          </button>
+        </div>
       </motion.header>
 
       {/* Side Menu Drawer & Backdrop */}
@@ -267,14 +303,24 @@ export const Navbar = ({ onReplayLoader }) => {
                     </span>
                   </div>
 
-                  {onReplayLoader && (
+                  <div className="flex items-center gap-3">
                     <button
-                      onClick={() => { setMenuOpen(false); setTimeout(onReplayLoader, 250); }}
-                      className="font-mono text-slate-500 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 cursor-pointer text-[10px]"
+                      onClick={toggleTheme}
+                      className="font-mono text-slate-400 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 cursor-pointer text-[10px] flex items-center gap-1.5"
                     >
-                      [ Replay ]
+                      {isDark ? <Sun className="w-3 h-3 text-amber-400" /> : <Moon className="w-3 h-3 text-sky-400" />}
+                      <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
                     </button>
-                  )}
+
+                    {onReplayLoader && (
+                      <button
+                        onClick={() => { setMenuOpen(false); setTimeout(onReplayLoader, 250); }}
+                        className="font-mono text-slate-500 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 cursor-pointer text-[10px]"
+                      >
+                        [ Replay ]
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.aside>
