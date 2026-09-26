@@ -250,7 +250,7 @@ export const Projects = () => {
                             title={`Used in: ${usedIn.join(', ')}`}
                             className="flex min-w-36 items-center gap-2.5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-slate-50 dark:bg-white/[0.04] px-2.5 py-2 transition-colors hover:border-sky-400/40 dark:hover:border-sky-400/30"
                           >
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200/70 bg-white dark:border-white/[0.08]">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center">
                               {logo ? (
                                 <svg
                                   className="h-5 w-5"
