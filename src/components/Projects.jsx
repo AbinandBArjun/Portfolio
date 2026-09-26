@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ExternalLink, Sparkles } from 'lucide-react';
 import {
-  Atom,
-  Brain,
-  Braces,
-  Code2,
-  Cpu,
-  Database,
-  Eye,
-  Fingerprint,
-  Layers3,
-  MoveUpRight,
-  Network,
-  Search,
-  Server,
-  ShieldCheck,
-  Smartphone,
-  Sparkles,
-  Workflow,
-  Zap,
-  ExternalLink
-} from 'lucide-react';
+  siDocker as dockerLogo,
+  siExpress as expressLogo,
+  siFastapi as fastApiLogo,
+  siFramer as framerLogo,
+  siFlutter as flutterLogo,
+  siGithub as gitHubLogo,
+  siHtml5 as html5Logo,
+  siJavascript as javascriptLogo,
+  siLangchain as langChainLogo,
+  siMongodb as mongoDbLogo,
+  siNodedotjs as nodeJsLogo,
+  siPostman as postmanLogo,
+  siPython as pythonLogo,
+  siPytorch as pytorchLogo,
+  siReact as reactLogo,
+  siSqlite as sqliteLogo,
+  siTailwindcss as tailwindLogo,
+  siTypescript as typeScriptLogo,
+  siVite as viteLogo,
+  siWebauthn as webAuthnLogo
+} from 'simple-icons';
 import { portfolioData } from '../data/portfolioData';
 import { SpotlightCard } from './react-bits/SpotlightCard';
 
@@ -28,52 +30,56 @@ const toolCategories = [
   {
     name: 'Programming Languages',
     tools: {
-      JavaScript: { Icon: Braces, color: 'text-amber-400 bg-amber-400/10' },
-      TypeScript: { Icon: Code2, color: 'text-blue-400 bg-blue-400/10' }
+      JavaScript: { logo: javascriptLogo },
+      TypeScript: { logo: typeScriptLogo },
+      Python: { logo: pythonLogo },
+      HTML5: { logo: html5Logo }
     }
   },
   {
     name: 'Frameworks & Libraries',
     tools: {
-      React: { Icon: Atom, color: 'text-cyan-400 bg-cyan-400/10' },
-      'Node.js': { Icon: Server, color: 'text-green-400 bg-green-400/10' },
-      Express: { Icon: Network, color: 'text-slate-400 bg-slate-400/10' },
-      FastAPI: { Icon: Zap, color: 'text-teal-400 bg-teal-400/10' },
-      Flutter: { Icon: Smartphone, color: 'text-sky-400 bg-sky-400/10' },
-      PyTorch: { Icon: Cpu, color: 'text-orange-400 bg-orange-400/10' },
-      LangChain: { Icon: Workflow, color: 'text-emerald-400 bg-emerald-400/10' },
-      'Framer Motion': { Icon: MoveUpRight, color: 'text-pink-400 bg-pink-400/10' },
-      'Tailwind CSS': { Icon: Layers3, color: 'text-cyan-300 bg-cyan-300/10' }
+      React: { logo: reactLogo },
+      'Node.js': { logo: nodeJsLogo },
+      Express: { logo: expressLogo },
+      FastAPI: { logo: fastApiLogo },
+      Flutter: { logo: flutterLogo },
+      PyTorch: { logo: pytorchLogo },
+      LangChain: { logo: langChainLogo },
+      'Framer Motion': { logo: framerLogo },
+      'Tailwind CSS': { logo: tailwindLogo }
     }
   },
   {
     name: 'AI & Machine Learning',
     tools: {
-      'Multimodal AI': { Icon: Brain, color: 'text-violet-400 bg-violet-400/10' },
-      RAG: { Icon: Search, color: 'text-purple-400 bg-purple-400/10' },
-      XAI: { Icon: Eye, color: 'text-indigo-400 bg-indigo-400/10' }
+      'Multimodal AI': { mark: 'AI' },
+      RAG: { mark: 'RAG' },
+      XAI: { mark: 'XAI' }
     }
   },
   {
     name: 'Data & APIs',
     tools: {
-      MongoDB: { Icon: Database, color: 'text-green-400 bg-green-400/10' },
-      SQLite: { Icon: Database, color: 'text-blue-400 bg-blue-400/10' },
-      'REST API': { Icon: Network, color: 'text-sky-400 bg-sky-400/10' },
-      'GitHub API': { Icon: Code2, color: 'text-slate-300 bg-slate-400/10' }
+      MongoDB: { logo: mongoDbLogo },
+      SQLite: { logo: sqliteLogo },
+      'REST API': { mark: 'API' },
+      'GitHub API': { logo: gitHubLogo }
     }
   },
   {
     name: 'Security & Identity',
     tools: {
-      WebAuthn: { Icon: Fingerprint, color: 'text-cyan-400 bg-cyan-400/10' },
-      Security: { Icon: ShieldCheck, color: 'text-amber-400 bg-amber-400/10' }
+      WebAuthn: { logo: webAuthnLogo },
+      Security: { mark: 'SEC' }
     }
   },
   {
     name: 'Developer Tools',
     tools: {
-      Vite: { Icon: Zap, color: 'text-violet-400 bg-violet-400/10' }
+      Vite: { logo: viteLogo },
+      Docker: { logo: dockerLogo },
+      Postman: { logo: postmanLogo }
     }
   }
 ];
@@ -233,7 +239,7 @@ export const Projects = () => {
                     </div>
                     <div className="flex flex-wrap gap-2.5">
                       {categoryTools.map(([tool, usedIn], toolIdx) => {
-                        const { Icon, color } = category.tools[tool];
+                        const { logo, mark } = category.tools[tool];
 
                         return (
                           <motion.div
@@ -244,8 +250,21 @@ export const Projects = () => {
                             title={`Used in: ${usedIn.join(', ')}`}
                             className="flex min-w-36 items-center gap-2.5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-slate-50 dark:bg-white/[0.04] px-2.5 py-2 transition-colors hover:border-sky-400/40 dark:hover:border-sky-400/30"
                           >
-                            <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200/70 dark:border-white/[0.08] ${color}`}>
-                              <Icon className="h-4 w-4" aria-hidden="true" />
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200/70 bg-white dark:border-white/[0.08]">
+                              {logo ? (
+                                <svg
+                                  className="h-5 w-5"
+                                  viewBox="0 0 24 24"
+                                  fill={`#${logo.hex}`}
+                                  aria-hidden="true"
+                                >
+                                  <path d={logo.path} />
+                                </svg>
+                              ) : (
+                                <span className="font-mono text-[10px] font-semibold text-slate-600 dark:text-slate-300" aria-hidden="true">
+                                  {mark}
+                                </span>
+                              )}
                             </span>
                             <span className="min-w-0">
                               <span className="block text-sm font-semibold leading-tight text-slate-800 dark:text-slate-100">
