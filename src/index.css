@@ -292,6 +292,25 @@ html.light textarea::placeholder {
   color: #a8a29e !important;
 }
 
+html.light .menu-drawer {
+  background-color: rgba(247, 245, 240, 0.98) !important;
+  border-color: rgba(68, 64, 60, 0.14) !important;
+  box-shadow: -20px 0 50px rgba(68, 64, 60, 0.14);
+}
+
+html.light .menu-drawer-header,
+html.light .menu-drawer-footer {
+  border-color: rgba(68, 64, 60, 0.12) !important;
+}
+
+html.light .menu-drawer-footer {
+  background-color: rgba(239, 236, 228, 0.9) !important;
+}
+
+html.light .menu-drawer [class*="text-sky-400"] {
+  color: var(--accent-cyan) !important;
+}
+
 html.dark [class*="bg-[#07090e]"] {
   background-color: var(--bg-primary) !important;
 }
