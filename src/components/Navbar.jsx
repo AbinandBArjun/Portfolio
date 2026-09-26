@@ -156,19 +156,19 @@ export const Navbar = ({ onReplayLoader }) => {
                 animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
                 className="block origin-center"
-                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : 'rgba(255,255,255,0.9)' }}
+                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
               />
               <motion.span
                 animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
                 transition={{ duration: 0.2 }}
                 className="block origin-right"
-                style={{ height: '1.5px', width: '14px', background: 'rgba(255,255,255,0.9)' }}
+                style={{ height: '1.5px', width: '14px', background: isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
               />
               <motion.span
                 animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
                 className="block origin-center"
-                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : 'rgba(255,255,255,0.9)' }}
+                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
               />
             </div>
           </button>
@@ -199,13 +199,13 @@ export const Navbar = ({ onReplayLoader }) => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 right-0 bottom-0 z-[55] w-full sm:w-[420px] md:w-[460px] max-w-[90vw] h-full flex flex-col justify-between overflow-y-auto bg-[#07090e]/95 backdrop-blur-2xl border-l border-white/10 shadow-[-20px_0_50px_rgba(0,0,0,0.85)]"
+              className="menu-drawer fixed top-0 right-0 bottom-0 z-[55] w-full sm:w-[420px] md:w-[460px] max-w-[90vw] h-full flex flex-col justify-between overflow-y-auto bg-[#07090e]/95 backdrop-blur-2xl border-l border-white/10 shadow-[-20px_0_50px_rgba(0,0,0,0.85)]"
             >
               {/* Subtle top ambient glow */}
               <div className="absolute top-0 right-0 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
 
               {/* Drawer Header Divider */}
-              <div className="h-[72px] border-b border-white/[0.06] relative z-10" />
+              <div className="menu-drawer-header h-[72px] border-b border-white/[0.06] relative z-10" />
 
               {/* Navigation Links */}
               <nav className="flex-1 flex flex-col justify-center px-8 py-6 relative z-10">
@@ -278,7 +278,7 @@ export const Navbar = ({ onReplayLoader }) => {
               </nav>
 
               {/* Drawer Footer */}
-              <div className="px-8 py-6 border-t border-white/[0.06] flex flex-col gap-4 relative z-10 bg-[#05070c]/50">
+              <div className="menu-drawer-footer px-8 py-6 border-t border-white/[0.06] flex flex-col gap-4 relative z-10 bg-[#05070c]/50">
                 {/* Social links */}
                 <div className="flex items-center gap-5">
                   {socialLinks.map((s) => (

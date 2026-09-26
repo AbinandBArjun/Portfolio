@@ -155,6 +155,82 @@ export const portfolioData = {
     }
   ],
 
+  tools: [
+    {
+      category: "Programming Languages",
+      color: "#38bdf8",
+      items: [
+        { name: "Python", subtitle: "20+ projects", icon: "PY" },
+        { name: "JavaScript", subtitle: "10+ projects", icon: "JS" },
+        { name: "TypeScript", subtitle: "5+ projects", icon: "TS" },
+        { name: "HTML5", subtitle: "6+ projects", icon: "H5" },
+        { name: "CSS / SCSS", subtitle: "6+ projects", icon: "CS" },
+        { name: "Lua", subtitle: "FiveM scripting", icon: "LU" },
+        { name: "Kotlin", subtitle: "Android dev", icon: "KT" },
+        { name: "Shell / Bash", subtitle: "Server automation", icon: "SH" },
+        { name: "SQL", subtitle: "Database queries", icon: "SQ" }
+      ]
+    },
+    {
+      category: "Frameworks & Libraries",
+      color: "#a855f7",
+      items: [
+        { name: "React", subtitle: "Frontend apps", icon: "RE" },
+        { name: "Next.js 15", subtitle: "Full-stack", icon: "NX" },
+        { name: "Node.js", subtitle: "Backend APIs", icon: "ND" },
+        { name: "Vue.js", subtitle: "Frontend apps", icon: "VU" },
+        { name: "Firebase", subtitle: "Auth & DB", icon: "FB" },
+        { name: "Three.js", subtitle: "3D Web", icon: "TH" },
+        { name: "GSAP", subtitle: "Animations", icon: "GS" },
+        { name: "Prisma", subtitle: "ORM", icon: "PR" },
+        { name: "Playwright", subtitle: "Automation", icon: "PW" },
+        { name: "TensorFlow", subtitle: "Deep Learning", icon: "TF" },
+        { name: "Scikit-learn", subtitle: "ML models", icon: "SK" },
+        { name: "Transformers", subtitle: "NLP / BERT", icon: "TR" },
+        { name: "LangChain", subtitle: "LLM apps", icon: "LC" },
+        { name: "Volatility 3", subtitle: "Memory forensics", icon: "VL" },
+        { name: "Express.js", subtitle: "REST APIs", icon: "EX" }
+      ]
+    },
+    {
+      category: "Tools & Platforms",
+      color: "#10b981",
+      items: [
+        { name: "GitHub", subtitle: "Version control", icon: "GH" },
+        { name: "Discord API", subtitle: "Bot dev", icon: "DC" },
+        { name: "Vercel", subtitle: "Deployments", icon: "VC" },
+        { name: "Jupyter Notebook", subtitle: "Data analysis", icon: "JN" },
+        { name: "Android Studio", subtitle: "Mobile dev", icon: "AS" },
+        { name: "VS Code", subtitle: "IDE", icon: "VS" },
+        { name: "Postman", subtitle: "API testing", icon: "PM" },
+        { name: "Docker", subtitle: "Containerization", icon: "DK" },
+        { name: "Telegram Bot API", subtitle: "Bot automation", icon: "TG" },
+        { name: "FiveM / GTA V", subtitle: "Game scripting", icon: "GR" },
+        { name: "OpenAI / Gemini", subtitle: "AI APIs", icon: "AI" }
+      ]
+    },
+    {
+      category: "Security Tools",
+      color: "#ec4899",
+      items: [
+        { name: "VAPT", subtitle: "Pen testing", icon: "VP" },
+        { name: "Nmap", subtitle: "Network scanning", icon: "NM" },
+        { name: "Sqlmap", subtitle: "SQL injection", icon: "SM" },
+        { name: "Nuclei", subtitle: "Vuln scanning", icon: "NU" },
+        { name: "Wireshark", subtitle: "Packet analysis", icon: "WS" },
+        { name: "Volatility", subtitle: "Memory forensics", icon: "VT" },
+        { name: "MITRE ATT&CK", subtitle: "Threat framework", icon: "RT" },
+        { name: "CASE Ontology", subtitle: "Forensic standard", icon: "CA" },
+        { name: "SIEM", subtitle: "Log correlation", icon: "SI" },
+        { name: "SOAR", subtitle: "Incident response", icon: "SR" },
+        { name: "Honeypot", subtitle: "Threat capture", icon: "HP" },
+        { name: "CTI / IOC", subtitle: "Threat intel", icon: "CT" },
+        { name: "Static Analysis", subtitle: "Code analysis", icon: "SA" },
+        { name: "Digital Forensics", subtitle: "Evidence analysis", icon: "DF" }
+      ]
+    }
+  ],
+
   terminalCommands: {
     help: "Available commands: bio, skills, models, projects, contact, clear",
     bio: "Abinand B Arjun - AI Engineer specializing in LLMs, RAG, Computer Vision, & Deep Learning.",
