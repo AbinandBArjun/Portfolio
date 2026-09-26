@@ -2,10 +2,10 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #07090e;
-  --bg-secondary: #0d111a;
-  --bg-card: rgba(15, 22, 36, 0.7);
-  --bg-card-hover: rgba(22, 33, 54, 0.85);
+  --bg-primary: #171819;
+  --bg-secondary: #202123;
+  --bg-card: rgba(37, 39, 41, 0.94);
+  --bg-card-hover: rgba(49, 51, 54, 0.96);
   
   --border-color: rgba(255, 255, 255, 0.08);
   --border-highlight: rgba(56, 189, 248, 0.3);
@@ -290,4 +290,48 @@ html.light textarea {
 html.light input::placeholder,
 html.light textarea::placeholder {
   color: #a8a29e !important;
+}
+
+html.dark [class*="bg-[#07090e]"] {
+  background-color: var(--bg-primary) !important;
+}
+
+html.dark [class*="bg-[#05070a]"],
+html.dark [class*="bg-[#05070c]"],
+html.dark [class*="bg-[#080b12]"] {
+  background-color: var(--bg-secondary) !important;
+}
+
+html.dark [class*="bg-[#111319]"],
+html.dark [class*="bg-[#13151b]"] {
+  background-color: var(--bg-card) !important;
+}
+
+html.dark [class*="bg-[#15171d]"],
+html.dark [class*="bg-[#1e222d]"] {
+  background-color: var(--bg-card-hover) !important;
+}
+
+html.dark [class*="hover:bg-[#181a24]"]:hover {
+  background-color: var(--bg-card-hover) !important;
+}
+
+html.dark [class*="bg-slate-950"] {
+  background-color: #202123 !important;
+}
+
+html.dark [class*="bg-slate-900"] {
+  background-color: #292b2e !important;
+}
+
+html.dark [class*="bg-slate-800"] {
+  background-color: #35373a !important;
+}
+
+html.dark [class*="hover:bg-slate-800"]:hover {
+  background-color: #35373a !important;
+}
+
+html.dark [class*="hover:bg-slate-700"]:hover {
+  background-color: #414347 !important;
 }
