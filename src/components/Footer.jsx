@@ -21,7 +21,7 @@ export const Footer = () => {
             <span className="font-heading font-bold text-slate-900 dark:text-white text-base tracking-wide">
               {personal.name.toUpperCase()}
             </span>
-            <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400 block">
+            <span className="text-xs font-mono text-slate-500 dark:text-slate-400 block">
               © {new Date().getFullYear()} • Crafted for AI Excellence
             </span>
           </div>
@@ -30,7 +30,7 @@ export const Footer = () => {
         {/* Back to Top Floating Button */}
         <button
           onClick={scrollToTop}
-          className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-500/40 transition-all cursor-pointer shadow-md dark:shadow-lg flex items-center gap-2 text-xs font-mono"
+          className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-500/40 transition-all cursor-pointer shadow-md dark:shadow-lg flex items-center gap-2 text-sm font-mono"
         >
           <span>Back to Top</span>
           <ArrowUp className="w-4 h-4" />

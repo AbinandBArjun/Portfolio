@@ -98,7 +98,7 @@ export const PageTransition = ({ children }) => {
           className="absolute inset-0 flex flex-col justify-between p-6 md:p-12 z-[9985] text-white"
         >
           {/* Top HUD Row */}
-          <div className="flex items-center justify-between text-[11px] font-mono tracking-wider text-slate-400 border-b border-white/10 pb-4">
+          <div className="flex items-center justify-between text-xs font-mono tracking-wider text-slate-400 border-b border-white/10 pb-4">
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>SYS.ROUTER // {currentRoute.code}</span>
@@ -120,7 +120,7 @@ export const PageTransition = ({ children }) => {
           </div>
 
           {/* Bottom HUD Row */}
-          <div className="flex items-center justify-between text-[11px] font-mono tracking-wider text-slate-400 border-t border-white/10 pt-4">
+          <div className="flex items-center justify-between text-xs font-mono tracking-wider text-slate-400 border-t border-white/10 pt-4">
             <span>ABINAND.AI STUDIO // SYSTEM CORE</span>
             <span className="text-emerald-400 font-mono">STATUS: DISPATCH_OK</span>
           </div>
@@ -162,7 +162,7 @@ export const PageTransition = ({ children }) => {
           className="absolute inset-0 flex flex-col justify-between p-6 md:p-12 z-[9985] text-white"
         >
           {/* Top HUD Row */}
-          <div className="flex items-center justify-between text-[11px] font-mono tracking-wider text-slate-400 border-b border-white/10 pb-4">
+          <div className="flex items-center justify-between text-xs font-mono tracking-wider text-slate-400 border-b border-white/10 pb-4">
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-sky-400 animate-ping" />
               <span>ROUTING TRANSITION // DISPATCHING</span>
@@ -201,7 +201,7 @@ export const PageTransition = ({ children }) => {
           </div>
 
           {/* Bottom HUD Row */}
-          <div className="flex items-center justify-between text-[11px] font-mono tracking-wider text-slate-400 border-t border-white/10 pt-4">
+          <div className="flex items-center justify-between text-xs font-mono tracking-wider text-slate-400 border-t border-white/10 pt-4">
             <span>PORTFOLIO // ABINAND B ARJUN</span>
             <span className="font-mono text-sky-400">SYSTEM STABILITY 100%</span>
           </div>

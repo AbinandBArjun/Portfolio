@@ -29,6 +29,9 @@
   --glow-emerald: 0 0 25px rgba(16, 185, 129, 0.25);
 
   --grid-line-color: rgba(255, 255, 255, 0.03);
+  --hero-glow-cyan: rgba(56, 189, 248, 0.26);
+  --hero-glow-purple: rgba(168, 85, 247, 0.23);
+  --hero-glow-pink: rgba(236, 72, 153, 0.19);
 }
 
 html.light {
@@ -56,6 +59,9 @@ html.light {
   --glow-emerald: 0 0 25px rgba(5, 150, 105, 0.15);
 
   --grid-line-color: rgba(68, 64, 60, 0.05);
+  --hero-glow-cyan: rgba(2, 132, 199, 0.14);
+  --hero-glow-purple: rgba(147, 51, 234, 0.12);
+  --hero-glow-pink: rgba(219, 39, 119, 0.1);
 }
 
 * {
@@ -353,4 +359,92 @@ html.dark [class*="hover:bg-slate-800"]:hover {
 
 html.dark [class*="hover:bg-slate-700"]:hover {
   background-color: #414347 !important;
+}
+
+.about-intro-section {
+  scroll-margin-top: 6rem;
+}
+
+.about-intro-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+.about-intro-focus {
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .about-intro-layout {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr);
+    gap: 2rem;
+  }
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-background__glow {
+  position: absolute;
+  width: clamp(24rem, 48vw, 44rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(clamp(5rem, 9vw, 8rem));
+  will-change: transform;
+}
+
+.hero-background__glow--cyan {
+  top: 16%;
+  left: -13%;
+  background: radial-gradient(circle, var(--hero-glow-cyan) 0%, transparent 64%);
+  animation: hero-glow-drift-a 24s ease-in-out infinite alternate;
+}
+
+.hero-background__glow--purple {
+  top: 20%;
+  right: -15%;
+  background: radial-gradient(circle, var(--hero-glow-purple) 0%, transparent 64%);
+  animation: hero-glow-drift-b 30s ease-in-out infinite alternate;
+}
+
+.hero-background__glow--pink {
+  top: 48%;
+  left: 32%;
+  width: clamp(18rem, 36vw, 34rem);
+  background: radial-gradient(circle, var(--hero-glow-pink) 0%, transparent 64%);
+  animation: hero-glow-drift-c 36s ease-in-out infinite alternate;
+}
+
+.hero-background__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 25%, var(--bg-primary) 105%);
+  mask-image: linear-gradient(to bottom, black 0%, black 68%, transparent 100%);
+}
+
+@keyframes hero-glow-drift-a {
+  from { transform: translate3d(-3%, -2%, 0) scale(0.98); }
+  to { transform: translate3d(5%, 4%, 0) scale(1.04); }
+}
+
+@keyframes hero-glow-drift-b {
+  from { transform: translate3d(2%, -2%, 0) scale(1.02); }
+  to { transform: translate3d(-5%, 4%, 0) scale(0.97); }
+}
+
+@keyframes hero-glow-drift-c {
+  from { transform: translate3d(-4%, 2%, 0) scale(0.96); }
+  to { transform: translate3d(4%, -3%, 0) scale(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-background__glow {
+    animation: none;
+  }
 }

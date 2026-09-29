@@ -261,7 +261,7 @@ export const Projects = () => {
                                   <path d={logo.path} />
                                 </svg>
                               ) : (
-                                <span className="font-mono text-[10px] font-semibold text-slate-600 dark:text-slate-300" aria-hidden="true">
+                                <span className="font-mono text-xs font-semibold text-slate-600 dark:text-slate-300" aria-hidden="true">
                                   {mark}
                                 </span>
                               )}
