@@ -18,13 +18,11 @@ export const BentoAbout = () => {
   return (
     <section id="about" className="about-intro-section py-16 sm:py-24 relative z-10">
       <div className="container">
-        <div className="glass-panel rounded-3xl overflow-hidden border border-white/10">
-          <div className="about-intro-layout">
-            <div className="p-6 sm:p-10 lg:p-12 flex flex-col items-start">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-mono mb-6">
-                <span className="pulse-emerald" />
-                <span>ABOUT_ME.SYS // INTRODUCTION</span>
-              </div>
+        <div className="about-intro-layout">
+            <div className="about-intro-about glass-panel rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col items-start">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+                About
+              </h2>
 
               <div className="max-w-2xl space-y-4 text-slate-300 text-base sm:text-lg leading-relaxed">
                 <p>
@@ -81,7 +79,7 @@ export const BentoAbout = () => {
               </div>
             </div>
 
-            <aside className="about-intro-focus bg-slate-950/40 p-6 sm:p-10 lg:p-8">
+            <aside className="about-intro-focus glass-panel rounded-3xl p-6 sm:p-8 lg:p-10">
               <div className="flex items-center justify-between gap-4 mb-6">
                 <div>
                   <p className="text-xs font-mono tracking-widest text-slate-500">CURRENT_FOCUS.SYS</p>
@@ -117,7 +115,6 @@ export const BentoAbout = () => {
                 ))}
               </div>
             </aside>
-          </div>
         </div>
       </div>
     </section>
