@@ -3,8 +3,8 @@ import React, { useRef, useState } from 'react';
 export const SpotlightCard = ({
   children,
   className = '',
-  spotlightColor = 'rgba(var(--accent-cyan-rgb), 0.15)',
-  borderColor = 'rgba(var(--accent-cyan-rgb), 0.3)',
+  spotlightColor = 'rgba(56, 189, 248, 0.15)',
+  borderColor = 'rgba(56, 189, 248, 0.3)',
   onClick
 }) => {
   const cardRef = useRef(null);

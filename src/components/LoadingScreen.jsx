@@ -85,7 +85,7 @@ export const LoadingScreen = ({ onComplete }) => {
             <div className="hidden sm:block text-slate-500 tracking-wider">
               10°48'32.0"N 106°46'55.2"E
             </div>
-            <div className="text-accent-cyan tracking-widest uppercase">
+            <div className="text-sky-400/80 tracking-widest uppercase">
               Abinand B Arjun
             </div>
           </div>
@@ -104,7 +104,7 @@ export const LoadingScreen = ({ onComplete }) => {
 
             {/* Huge Display Counter */}
             <div className="relative flex items-baseline justify-center">
-              <span className="text-gradient text-7xl sm:text-9xl md:text-[13rem] font-extrabold tracking-tighter font-mono leading-none drop-shadow-[0_0_35px_rgba(56,189,248,0.2)]">
+              <span className="text-7xl sm:text-9xl md:text-[13rem] font-extrabold tracking-tighter font-mono text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-purple-400 to-pink-500 leading-none drop-shadow-[0_0_35px_rgba(56,189,248,0.2)]">
                 {String(progress).padStart(2, '0')}
               </span>
               <span className="text-3xl sm:text-5xl md:text-7xl font-bold font-mono text-purple-400 ml-2">

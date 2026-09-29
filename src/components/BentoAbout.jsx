@@ -60,7 +60,7 @@ export const BentoAbout = () => {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Bento Card 1: Bio & Philosophy (2 Cols wide on desktop) */}
-          <SpotlightCard className="md:col-span-2 p-8 flex flex-col justify-between" spotlightColor="rgba(var(--accent-purple-rgb), 0.15)">
+          <SpotlightCard className="md:col-span-2 p-8 flex flex-col justify-between" spotlightColor="rgba(168, 85, 247, 0.15)">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
@@ -100,7 +100,7 @@ export const BentoAbout = () => {
           </SpotlightCard>
 
           {/* Bento Card 2: Live Clock & Location Widget */}
-          <SpotlightCard className="p-6 flex flex-col justify-between" spotlightColor="rgba(var(--accent-cyan-rgb), 0.15)">
+          <SpotlightCard className="p-6 flex flex-col justify-between" spotlightColor="rgba(56, 189, 248, 0.15)">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-9 h-9 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400">
@@ -124,7 +124,7 @@ export const BentoAbout = () => {
           </SpotlightCard>
 
           {/* Bento Card 3: Live Inference Telemetry Simulation */}
-          <SpotlightCard className="p-6" spotlightColor="rgba(var(--accent-emerald-rgb), 0.15)">
+          <SpotlightCard className="p-6" spotlightColor="rgba(16, 185, 129, 0.15)">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Activity className="w-4 h-4 text-emerald-400 animate-pulse" />
@@ -170,7 +170,7 @@ export const BentoAbout = () => {
           </SpotlightCard>
 
           {/* Bento Card 4: Full Stack Tech Matrix (2 Cols wide on desktop) */}
-          <SpotlightCard className="md:col-span-2 p-6" spotlightColor="rgba(var(--accent-cyan-rgb), 0.15)">
+          <SpotlightCard className="md:col-span-2 p-6" spotlightColor="rgba(56, 189, 248, 0.15)">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-9 h-9 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400">
                 <Layers className="w-5 h-5" />
