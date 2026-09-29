@@ -169,7 +169,7 @@ export const Projects = () => {
                 >
                   <SpotlightCard
                     className="h-full flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#13151b] hover:bg-slate-50 dark:hover:bg-[#181a24] border border-slate-200 dark:border-white/[0.08] hover:border-sky-400/40 dark:hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-[0_12px_30px_rgba(0,0,0,0.5)]"
-                    spotlightColor="rgba(56, 189, 248, 0.12)"
+                    spotlightColor="rgba(var(--accent-cyan-rgb), 0.12)"
                   >
                     <a
                       href={project.githubUrl}

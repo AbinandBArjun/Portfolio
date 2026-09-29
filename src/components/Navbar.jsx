@@ -156,7 +156,7 @@ export const Navbar = ({ onReplayLoader }) => {
                 animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
                 className="block origin-center"
-                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
+                style={{ height: '1.5px', width: '20px', background: menuOpen ? 'var(--accent-cyan-text)' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
               />
               <motion.span
                 animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
@@ -168,7 +168,7 @@ export const Navbar = ({ onReplayLoader }) => {
                 animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
                 className="block origin-center"
-                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
+                style={{ height: '1.5px', width: '20px', background: menuOpen ? 'var(--accent-cyan-text)' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
               />
             </div>
           </button>
