@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sparkles, Download } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
-import { ParticleCanvas } from './react-bits/ParticleCanvas';
+import { HeroBackground } from './HeroBackground';
 import { TextScramble } from './react-bits/TextScramble';
 import { ShinyButton } from './react-bits/ShinyButton';
 
@@ -21,12 +21,7 @@ export const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
-      {/* Particle Canvas Background */}
-      <ParticleCanvas particleCount={70} />
-
-      {/* Radiant Ambient Background Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <HeroBackground />
 
       <div className="container relative z-10 text-center max-w-4xl mx-auto">
         {/* Availability Badge */}
