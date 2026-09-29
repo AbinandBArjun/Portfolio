@@ -268,7 +268,7 @@ export const GithubActivity = () => {
                   <h3 className="text-lg font-bold text-white tracking-wide">
                     @{username}
                   </h3>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                  <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
                     VERIFIED
                   </span>
                 </div>
@@ -312,7 +312,7 @@ export const GithubActivity = () => {
                     <Calendar className="w-3.5 h-3.5 text-emerald-400" />
                     <span className="text-white font-medium">Contribution Activity Matrix</span>
                   </div>
-                  <span className="text-[10px] text-slate-400 px-2 py-0.5 rounded-full bg-slate-800/80 border border-white/5">
+                  <span className="text-xs text-slate-400 px-2 py-0.5 rounded-full bg-slate-800/80 border border-white/5">
                     Hover square for commit telemetry
                   </span>
                 </div>
@@ -325,7 +325,7 @@ export const GithubActivity = () => {
                 >
                   <div className="inline-block min-w-max">
                     {/* Month labels row */}
-                    <div className="flex text-[10px] font-mono text-slate-400 mb-2 relative h-4">
+                    <div className="flex text-xs font-mono text-slate-400 mb-2 relative h-4">
                       <div className="w-8 shrink-0" /> {/* Spacer matching day labels */}
                       <div className="flex gap-[3.5px]">
                         {weeks.map((_, wIdx) => {
@@ -344,7 +344,7 @@ export const GithubActivity = () => {
                     {/* Days matrix with day-of-week labels */}
                     <div className="flex gap-1.5 items-start">
                       {/* Day labels column */}
-                      <div className="flex flex-col gap-[3.5px] pr-1.5 text-[9px] font-mono text-slate-500 shrink-0 select-none">
+                      <div className="flex flex-col gap-[3.5px] pr-1.5 text-[10px] font-mono text-slate-500 shrink-0 select-none">
                         {DAY_LABELS.map((dayLabel, idx) => (
                           <div key={idx} className="h-[12px] flex items-center justify-end">
                             {dayLabel}
@@ -406,7 +406,7 @@ export const GithubActivity = () => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-[11px] text-slate-500">Less</span>
+                  <span className="text-xs text-slate-500">Less</span>
                   <div className="flex gap-1 items-center">
                     <div className="w-3 h-3 rounded-[2.5px] bg-slate-900 border border-white/5" />
                     <div className="w-3 h-3 rounded-[2.5px] bg-emerald-950/80 border border-emerald-800/40" />
@@ -414,7 +414,7 @@ export const GithubActivity = () => {
                     <div className="w-3 h-3 rounded-[2.5px] bg-emerald-500 border border-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
                     <div className="w-3 h-3 rounded-[2.5px] bg-emerald-400 border border-emerald-300 shadow-[0_0_10px_rgba(52,211,153,0.7)]" />
                   </div>
-                  <span className="text-[11px] text-slate-500">More</span>
+                  <span className="text-xs text-slate-500">More</span>
                 </div>
               </div>
             </div>
@@ -429,7 +429,7 @@ export const GithubActivity = () => {
                       Activity<br />Breakdown
                     </h4>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20 whitespace-nowrap shrink-0">
+                  <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20 whitespace-nowrap shrink-0">
                     ACTIVITY %
                   </span>
                 </div>
@@ -494,7 +494,7 @@ export const GithubActivity = () => {
                 </div>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-white/[0.05] text-[10px] font-mono text-slate-500 flex items-center justify-between">
+              <div className="mt-4 pt-3 border-t border-white/[0.05] text-xs font-mono text-slate-500 flex items-center justify-between">
                 <span>Contribution Profile</span>
                 <span className="text-emerald-400">Verified</span>
               </div>
@@ -522,7 +522,7 @@ export const GithubActivity = () => {
               <div className="text-white font-semibold">
                 <span className="text-emerald-400">{hoveredDay.count}</span> {hoveredDay.count === 1 ? 'contribution' : 'contributions'}
               </div>
-              <div className="text-[10px] text-slate-400">
+              <div className="text-xs text-slate-400">
                 {new Date(hoveredDay.date + 'T00:00:00').toLocaleDateString('en-US', {
                   weekday: 'short',
                   month: 'short',

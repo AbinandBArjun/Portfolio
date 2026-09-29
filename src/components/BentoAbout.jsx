@@ -1,10 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Brain, Cloud, Cpu, Database, Eye, Layers } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export const BentoAbout = () => {
-  const { personal, techStack } = portfolioData;
+  const { personal } = portfolioData;
+  const focusAreas = [
+    {
+      title: 'LLM & Generative AI',
+      description: 'Fine-tuning language models and building generative AI applications.',
+      icon: Brain
+    },
+    {
+      title: 'Retrieval & RAG',
+      description: 'Combining vector search and retrieval workflows to ground AI responses.',
+      icon: Database
+    },
+    {
+      title: 'Computer Vision',
+      description: 'Working with image understanding, object detection, and vision models.',
+      icon: Eye
+    },
+    {
+      title: 'Model Training',
+      description: 'Adapting models with LoRA, QLoRA, and distributed training tools.',
+      icon: Layers
+    },
+    {
+      title: 'Inference & Serving',
+      description: 'Building model-serving workflows with vLLM, Triton, and FastAPI.',
+      icon: Cpu
+    },
+    {
+      title: 'MLOps & Cloud',
+      description: 'Using containers and cloud infrastructure to run AI workloads.',
+      icon: Cloud
+    }
+  ];
   const details = [
     { label: 'name', value: personal.name },
     { label: 'city', value: personal.location.split(' (')[0] },
@@ -20,11 +52,11 @@ export const BentoAbout = () => {
       <div className="container">
         <div className="about-intro-layout">
             <div className="about-intro-about glass-panel rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col items-start">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">
                 About
               </h2>
 
-              <div className="max-w-2xl space-y-4 text-slate-300 text-base sm:text-lg leading-relaxed">
+              <div className="max-w-2xl space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
                 <p>
                   I'm {personal.name}, an AI engineer with a builder's mindset. I like understanding a
                   problem end to end—from the data and models behind it to the software and infrastructure
@@ -80,38 +112,23 @@ export const BentoAbout = () => {
             </div>
 
             <aside className="about-intro-focus glass-panel rounded-3xl p-6 sm:p-8 lg:p-10">
-              <div className="flex items-center justify-between gap-4 mb-6">
+              <div className="mb-6">
                 <div>
-                  <p className="text-xs font-mono tracking-widest text-slate-500">CURRENT_FOCUS.SYS</p>
-                  <h3 className="text-xl font-bold text-white mt-1">What I work on</h3>
+                  <p className="text-xs font-mono tracking-widest text-slate-500">AREAS_OF_FOCUS.SYS</p>
+                  <h3 className="text-lg font-bold text-white mt-1">AI engineering capabilities</h3>
                 </div>
-                <span className="text-xs font-mono text-emerald-400 border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 rounded-full">
-                  AI ENGINEERING
-                </span>
               </div>
 
-              <div className="space-y-3">
-                {techStack.map((group, index) => (
-                  <div key={group.category} className="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-                    <div className="flex items-start gap-3">
-                      <span className="text-xs font-mono text-sky-400 pt-0.5">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <div className="min-w-0">
-                        <h4 className="text-sm font-semibold text-slate-200">{group.category}</h4>
-                        <div className="flex flex-wrap gap-1.5 mt-2">
-                          {group.skills.slice(0, 3).map((skill) => (
-                            <span
-                              key={skill}
-                              className="rounded-md bg-slate-800/80 px-2 py-1 text-[11px] font-mono text-slate-400"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {focusAreas.map(({ title, description, icon: Icon }) => (
+                  <article
+                    key={title}
+                    className="min-w-0 rounded-2xl border border-white/10 bg-slate-900/60 p-4 sm:p-5 transition-colors hover:border-sky-400/30"
+                  >
+                    <Icon className="w-5 h-5 text-sky-400 mb-4" aria-hidden="true" />
+                    <h4 className="text-sm font-semibold text-slate-100 mb-1.5">{title}</h4>
+                    <p className="text-sm leading-relaxed text-slate-400">{description}</p>
+                  </article>
                 ))}
               </div>
             </aside>

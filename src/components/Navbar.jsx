@@ -104,7 +104,7 @@ export const Navbar = ({ onReplayLoader }) => {
             <span className="font-heading font-bold text-base tracking-wider text-white flex items-center gap-1">
               ABINAND<span className="text-sky-400">.AI</span>
             </span>
-            <span className="text-[9px] font-mono text-slate-400 block -mt-0.5">AI ENGINEER</span>
+            <span className="text-xs font-mono text-slate-400 block -mt-0.5">AI ENGINEER</span>
           </div>
         </Link>
 
@@ -148,7 +148,7 @@ export const Navbar = ({ onReplayLoader }) => {
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
-            <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-slate-300 group-hover:text-white transition-colors duration-200 select-none">
+            <span className="text-xs font-mono tracking-[0.2em] uppercase text-slate-300 group-hover:text-white transition-colors duration-200 select-none">
               {menuOpen ? 'Close' : 'Menu'}
             </span>
             <div className="flex flex-col justify-center items-end gap-[5px]" style={{ width: '22px', height: '20px' }}>
@@ -242,7 +242,7 @@ export const Navbar = ({ onReplayLoader }) => {
                               {link.number}
                             </span>
                             <span
-                              className={`font-heading text-2xl sm:text-3xl font-bold tracking-tight transition-all duration-200 ${
+                              className={`font-heading text-xl sm:text-2xl font-bold tracking-tight transition-all duration-200 ${
                                 isActive
                                   ? 'text-sky-400 translate-x-1'
                                   : isHovered
@@ -256,7 +256,7 @@ export const Navbar = ({ onReplayLoader }) => {
 
                           <div className="flex items-center gap-2">
                             {isActive && (
-                              <span className="font-mono text-[9px] uppercase px-2 py-0.5 rounded-full bg-sky-400/15 text-sky-400 border border-sky-400/30">
+                              <span className="font-mono text-xs uppercase px-2 py-0.5 rounded-full bg-sky-400/15 text-sky-400 border border-sky-400/30">
                                 Current
                               </span>
                             )}
@@ -287,7 +287,7 @@ export const Navbar = ({ onReplayLoader }) => {
                       href={s.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-slate-400 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 text-[10px]"
+                      className="font-mono text-slate-400 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 text-xs"
                     >
                       {s.name}
                     </a>
@@ -298,7 +298,7 @@ export const Navbar = ({ onReplayLoader }) => {
                 <div className="flex items-center justify-between pt-2 border-t border-white/[0.04]">
                   <div className="flex items-center gap-2">
                     <span className="pulse-emerald" />
-                    <span className="font-mono text-slate-400 tracking-wider uppercase text-[10px]">
+                    <span className="font-mono text-slate-400 tracking-wider uppercase text-xs">
                       Available for Work
                     </span>
                   </div>
@@ -306,7 +306,7 @@ export const Navbar = ({ onReplayLoader }) => {
                   <div className="flex items-center gap-3">
                     <button
                       onClick={toggleTheme}
-                      className="font-mono text-slate-400 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 cursor-pointer text-[10px] flex items-center gap-1.5"
+                      className="font-mono text-slate-400 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 cursor-pointer text-xs flex items-center gap-1.5"
                     >
                       {isDark ? <Sun className="w-3 h-3 text-amber-400" /> : <Moon className="w-3 h-3 text-sky-400" />}
                       <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
@@ -315,7 +315,7 @@ export const Navbar = ({ onReplayLoader }) => {
                     {onReplayLoader && (
                       <button
                         onClick={() => { setMenuOpen(false); setTimeout(onReplayLoader, 250); }}
-                        className="font-mono text-slate-500 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 cursor-pointer text-[10px]"
+                        className="font-mono text-slate-500 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 cursor-pointer text-xs"
                       >
                         [ Replay ]
                       </button>

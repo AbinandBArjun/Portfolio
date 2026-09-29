@@ -40,11 +40,11 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]"
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]"
         >
           Hi, I'm <span className="text-gradient">{personal.name}</span>
           <br />
-          <span className="text-slate-300 text-2xl sm:text-4xl md:text-5xl font-semibold mt-2 block">
+          <span className="text-slate-300 text-2xl sm:text-3xl md:text-4xl font-semibold mt-2 block">
             <TextScramble text={personal.title} scrambleDuration={1200} />
           </span>
         </motion.h1>

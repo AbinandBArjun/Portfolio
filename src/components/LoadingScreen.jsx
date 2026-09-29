@@ -126,7 +126,7 @@ export const LoadingScreen = ({ onComplete }) => {
 
           {/* Bottom Info Bar & Animated Progress Line */}
           <div className="relative z-10 w-full space-y-4">
-            <div className="flex items-center justify-between text-[11px] font-mono text-slate-500">
+            <div className="flex items-center justify-between text-xs font-mono text-slate-500">
               <span>DESIGNED FOR PERFORMANCE</span>
               <span>{progress}% COMPLETE</span>
             </div>
