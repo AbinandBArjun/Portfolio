@@ -361,6 +361,30 @@ html.dark [class*="hover:bg-slate-700"]:hover {
   background-color: #414347 !important;
 }
 
+.about-intro-section {
+  scroll-margin-top: 6rem;
+}
+
+.about-intro-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.about-intro-focus {
+  border-top: 1px solid var(--border-color);
+}
+
+@media (min-width: 1024px) {
+  .about-intro-layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  }
+
+  .about-intro-focus {
+    border-top: 0;
+    border-left: 1px solid var(--border-color);
+  }
+}
+
 .hero-background {
   position: absolute;
   inset: 0;
