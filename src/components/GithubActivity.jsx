@@ -37,19 +37,45 @@ export const GithubActivity = () => {
       const contribPromise = fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`)
         .then(res => res.ok ? res.json() : null)
         .catch(() => null);
+      const currentYearPromise = fetch(
+        `https://github-contributions-api.jogruber.de/v4/${username}?y=${new Date().getFullYear()}`
+      )
+        .then(res => res.ok ? res.json() : null)
+        .catch(() => null);
 
       // 2. Fetch User Profile
       const userPromise = fetch(`https://api.github.com/users/${username}`)
         .then(res => res.ok ? res.json() : null)
         .catch(() => null);
 
-      const [contribRes, userRes] = await Promise.all([
+      const [contribRes, currentYearRes, userRes] = await Promise.all([
         contribPromise,
+        currentYearPromise,
         userPromise
       ]);
 
       if (contribRes && contribRes.contributions) {
-        setContributionsData(contribRes);
+        if (currentYearRes?.contributions) {
+          const currentYearDays = new Map(
+            currentYearRes.contributions.map(day => [day.date, day])
+          );
+          const contributions = contribRes.contributions.map(day =>
+            currentYearDays.get(day.date) ?? day
+          );
+
+          setContributionsData({
+            ...contribRes,
+            total: {
+              ...contribRes.total,
+              lastYear: contributions.reduce((total, day) => total + (day.count || 0), 0)
+            },
+            contributions
+          });
+        } else {
+          setContributionsData(contribRes);
+        }
+      } else if (currentYearRes?.contributions) {
+        setContributionsData(currentYearRes);
       }
       if (userRes) {
         setUserData(userRes);
