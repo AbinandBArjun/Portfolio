@@ -8,7 +8,7 @@ const navLinks = [
   { name: 'Home', to: '/', icon: Home },
   { name: 'Projects', to: '/projects', icon: Folder },
   { name: 'Experience', to: '/experience', icon: Briefcase },
-  { name: 'About & specialties', to: '/#about', icon: Wrench },
+  { name: 'Tools', to: '/#about', icon: Wrench },
   { name: 'Contact', to: '/contact', icon: SquarePen },
 ];
 
@@ -74,7 +74,7 @@ export const Navbar = () => {
           className="flex items-center gap-0.5 rounded-full border border-white/[0.06] bg-slate-900/80 p-1 shadow-lg backdrop-blur-xl sm:gap-1 sm:p-1.5"
         >
           {navLinks.map(({ name, to, icon: Icon }) => {
-            const isAboutLink = name === 'About & specialties';
+            const isAboutLink = name === 'Tools';
             const isActive = isAboutLink
               ? location.pathname === '/' && location.hash === '#about'
               : location.pathname === to;
@@ -85,14 +85,19 @@ export const Navbar = () => {
                 to={to}
                 aria-label={name}
                 aria-current={isActive ? 'page' : undefined}
-                title={name}
-                className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors sm:h-9 sm:w-9 ${
+                className={`group relative flex h-8 w-8 items-center justify-center rounded-full transition-colors sm:h-9 sm:w-9 ${
                   isActive
                     ? 'bg-[var(--accent-surface)] text-[var(--accent-cyan)]'
                     : 'text-slate-300 hover:bg-white/[0.08] hover:text-white'
                 } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-highlight)]`}
               >
                 <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute left-1/2 top-full z-20 mt-1 -translate-x-1/2 translate-y-1 rounded-md bg-neutral-800 px-2 py-1 font-sans text-xs font-medium leading-none text-white opacity-0 shadow-lg transition-all duration-150 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
+                >
+                  {name}
+                </span>
               </Link>
             );
           })}
