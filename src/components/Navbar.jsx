@@ -95,7 +95,7 @@ export const Navbar = ({ onReplayLoader }) => {
         className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-6 md:px-12 py-5 pointer-events-none"
       >
         <Link to="/" className="flex items-center gap-3 group z-[61] pointer-events-auto">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-purple-600 p-[1px] shadow-[0_0_15px_rgba(56,189,248,0.3)] transition-transform group-hover:scale-105">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-purple-600 p-[1px] transition-transform group-hover:scale-105">
             <div className="w-full h-full bg-[#07090e] rounded-[11px] flex items-center justify-center">
               <Cpu className="w-4 h-4 text-sky-400 group-hover:rotate-180 transition-transform duration-700" />
             </div>
@@ -156,7 +156,7 @@ export const Navbar = ({ onReplayLoader }) => {
                 animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
                 className="block origin-center"
-                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
+                style={{ height: '1.5px', width: '20px', background: menuOpen ? 'var(--accent-cyan)' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(32,36,40,0.8)' }}
               />
               <motion.span
                 animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
@@ -168,7 +168,7 @@ export const Navbar = ({ onReplayLoader }) => {
                 animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
                 className="block origin-center"
-                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
+                style={{ height: '1.5px', width: '20px', background: menuOpen ? 'var(--accent-cyan)' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(32,36,40,0.8)' }}
               />
             </div>
           </button>
@@ -229,7 +229,7 @@ export const Navbar = ({ onReplayLoader }) => {
                           onClick={() => handleNavClick(link.to)}
                           className={`w-full group flex items-center justify-between py-3.5 px-4 rounded-xl text-left cursor-pointer transition-all duration-200 ${
                             isActive
-                              ? 'bg-sky-500/10 border border-sky-500/20 shadow-[0_0_20px_rgba(56,189,248,0.08)]'
+                              ? 'bg-sky-500/10 border border-sky-500/20'
                               : 'hover:bg-white/[0.04] border border-transparent'
                           }`}
                         >

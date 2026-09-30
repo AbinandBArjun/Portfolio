@@ -68,7 +68,7 @@ export const Contact = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Left Column: Direct Contact & Socials */}
-          <SpotlightCard className="p-8 flex flex-col justify-between" spotlightColor="rgba(236, 72, 153, 0.15)">
+          <SpotlightCard className="p-8 flex flex-col justify-between">
             <div>
               <h3 className="text-2xl font-bold text-white mb-2">Direct Reach</h3>
               <p className="text-slate-400 text-sm mb-8">
@@ -129,7 +129,7 @@ export const Contact = () => {
           </SpotlightCard>
 
           {/* Right Column: Contact Message Form */}
-          <SpotlightCard className="p-8" spotlightColor="rgba(56, 189, 248, 0.15)">
+          <SpotlightCard className="p-8">
             <h3 className="text-2xl font-bold text-white mb-6">Send Message</h3>
 
             {submitted ? (
@@ -189,7 +189,7 @@ export const Contact = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-purple-600 text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity shadow-[0_0_20px_rgba(56,189,248,0.25)] cursor-pointer"
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-purple-600 text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>Open Email Draft</span>

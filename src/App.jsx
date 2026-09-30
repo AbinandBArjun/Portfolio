@@ -19,7 +19,7 @@ function AppRoutes() {
   const [loaderKey, setLoaderKey] = useState(0);
 
   return (
-    <div className="relative min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] overflow-x-hidden selection:bg-sky-500/30 selection:text-sky-400 transition-colors duration-300">
+    <div className="relative min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] overflow-x-hidden transition-colors duration-300">
       <CustomCursor />
       {/* Loading screen only on home page */}
       {location.pathname === '/' && <LoadingScreen key={loaderKey} />}
@@ -51,4 +51,3 @@ function App() {
 }
 
 export default App;
-

@@ -29,7 +29,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-6 shadow-[0_0_20px_rgba(16,185,129,0.15)]"
+          className="status-badge inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono mb-6"
         >
           <span className="pulse-emerald" />
           <span>{personal.status}</span>

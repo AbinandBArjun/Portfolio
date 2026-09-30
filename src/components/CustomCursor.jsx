@@ -77,11 +77,11 @@ export const CustomCursor = () => {
         }}
         animate={{
           scale: isMouseDown ? 0.75 : isHovered ? 1.6 : 1,
-          borderColor: isHovered ? 'rgba(56, 189, 248, 0.9)' : 'rgba(56, 189, 248, 0.45)',
-          backgroundColor: isHovered ? 'rgba(56, 189, 248, 0.12)' : 'rgba(56, 189, 248, 0.03)',
+          borderColor: isHovered ? 'var(--cursor-border-hover)' : 'var(--cursor-border)',
+          backgroundColor: isHovered ? 'var(--cursor-surface-hover)' : 'var(--cursor-surface)',
         }}
         transition={{ type: 'spring', stiffness: 350, damping: 24 }}
-        className="fixed top-0 left-0 w-12 h-12 rounded-full border border-sky-400/50 backdrop-blur-xs flex items-center justify-center shadow-[0_0_20px_rgba(56,189,248,0.25)] will-change-transform"
+        className="fixed top-0 left-0 w-12 h-12 rounded-full border border-sky-400/50 backdrop-blur-xs flex items-center justify-center will-change-transform"
       >
         {hoverText && (
           <motion.span

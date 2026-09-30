@@ -230,7 +230,7 @@ export const GithubActivity = () => {
 
         {/* Live Profile Glance & Key Metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <SpotlightCard className="p-5" spotlightColor="rgba(16, 185, 129, 0.15)">
+          <SpotlightCard className="p-5">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Contributions</span>
               <Calendar className="w-4 h-4 text-emerald-400" />
@@ -241,7 +241,7 @@ export const GithubActivity = () => {
             </div>
           </SpotlightCard>
 
-          <SpotlightCard className="p-5" spotlightColor="rgba(245, 158, 11, 0.15)">
+          <SpotlightCard className="p-5">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Current Streak</span>
               <Flame className="w-4 h-4 text-amber-400 animate-pulse" />
@@ -251,7 +251,7 @@ export const GithubActivity = () => {
             </div>
           </SpotlightCard>
 
-          <SpotlightCard className="p-5" spotlightColor="rgba(56, 189, 248, 0.15)">
+          <SpotlightCard className="p-5">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Public Repos</span>
               <FolderGit2 className="w-4 h-4 text-sky-400" />
@@ -262,7 +262,7 @@ export const GithubActivity = () => {
             </div>
           </SpotlightCard>
 
-          <SpotlightCard className="p-5" spotlightColor="rgba(168, 85, 247, 0.15)">
+          <SpotlightCard className="p-5">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Peak Velocity</span>
               <Sparkles className="w-4 h-4 text-purple-400" />
@@ -275,7 +275,7 @@ export const GithubActivity = () => {
         </div>
 
         {/* The GitHub Heatmap Container */}
-        <SpotlightCard className="p-6 md:p-8" spotlightColor="rgba(16, 185, 129, 0.12)">
+        <SpotlightCard className="p-6 md:p-8">
           {/* Top Bar of Heatmap */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
             <div className="flex items-center gap-3">
@@ -473,7 +473,7 @@ export const GithubActivity = () => {
                     title={`Pull requests: ${activityBreakdown.prs}%`}
                   />
                   <div
-                    className="h-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.5)]"
+                    className="h-full bg-sky-400"
                     style={{ width: `${activityBreakdown.reviews}%` }}
                     title={`Code review: ${activityBreakdown.reviews}%`}
                   />
@@ -504,7 +504,7 @@ export const GithubActivity = () => {
 
                   <div className="flex items-center justify-between p-2 rounded-lg bg-slate-950/40 border border-white/[0.03] hover:bg-slate-800/40 transition-colors">
                     <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.6)]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-sky-400" />
                       <span className="text-slate-300">Code review</span>
                     </div>
                     <span className="font-semibold text-white">{activityBreakdown.reviews}%</span>

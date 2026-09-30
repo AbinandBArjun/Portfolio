@@ -11,12 +11,12 @@ export const ShinyButton = ({
   const getVariantStyles = () => {
     switch (variant) {
       case 'emerald':
-        return 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.25)]';
+        return 'bg-slate-500/10 hover:bg-slate-500/20 text-slate-200 border-slate-500/30';
       case 'secondary':
         return 'bg-slate-800/60 hover:bg-slate-800 text-slate-200 border-slate-700/60 shadow-[0_0_15px_rgba(255,255,255,0.05)]';
       case 'primary':
       default:
-        return 'bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border-sky-500/40 shadow-[0_0_20px_rgba(56,189,248,0.25)]';
+        return 'bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border-sky-500/40';
     }
   };
 
