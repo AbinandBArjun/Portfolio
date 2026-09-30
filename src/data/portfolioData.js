@@ -5,7 +5,7 @@ export const portfolioData = {
     tagline: "Building autonomous AI agents, fine-tuning state-of-the-art LLMs, and crafting production-grade RAG pipelines.",
     location: "Pathanamthitta, Kerala, India (UTC +5:30)",
     status: "Available for AI Engineering & Consulting",
-    bio: "Passionate AI Engineer specializing in Deep Learning, Large Language Models (LLMs), Generative AI, and Distributed Training. I bridge the gap between cutting-edge AI research and scalable, low-latency production applications.",
+    bio: "AI engineer focused on deep learning, large language models, generative AI, and distributed training, building scalable, low-latency applications from research ideas.",
     email: "abinandbarjun7@gmail.com", // updateable by user
     github: "https://github.com/AbinandBArjun",
     linkedin: "https://www.linkedin.com/in/abinand-b-arjun",

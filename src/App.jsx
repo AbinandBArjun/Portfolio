@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { LoadingScreen } from './components/LoadingScreen';
@@ -16,14 +16,13 @@ import { ThemeProvider } from './context/ThemeContext';
 // Inner component so useLocation works inside BrowserRouter
 function AppRoutes() {
   const location = useLocation();
-  const [loaderKey, setLoaderKey] = useState(0);
 
   return (
     <div className="relative min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] overflow-x-hidden transition-colors duration-300">
       <CustomCursor />
       {/* Loading screen only on home page */}
-      {location.pathname === '/' && <LoadingScreen key={loaderKey} />}
-      <Navbar onReplayLoader={() => setLoaderKey((p) => p + 1)} />
+      {location.pathname === '/' && <LoadingScreen />}
+      <Navbar />
 
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
