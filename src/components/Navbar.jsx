@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Cpu, ArrowUpRight, Sun, Moon } from 'lucide-react';
+import { ArrowUpRight, Sun, Moon } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { useTheme } from '../context/ThemeContext';
 
@@ -96,16 +96,16 @@ export const Navbar = ({ onReplayLoader }) => {
       >
         <Link to="/" className="flex items-center gap-3 group z-[61] pointer-events-auto">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-purple-600 p-[1px] transition-transform group-hover:scale-105">
-            <div className="w-full h-full bg-[#07090e] rounded-[11px] flex items-center justify-center">
-              <Cpu className="w-4 h-4 text-sky-400 group-hover:rotate-180 transition-transform duration-700" />
-            </div>
+            <img
+              src="/favicon.jpg"
+              alt=""
+              aria-hidden="true"
+              className="w-full h-full rounded-[11px] object-cover"
+            />
           </div>
-          <div>
-            <span className="font-heading font-bold text-base tracking-wider text-white flex items-center gap-1">
-              ABINAND<span className="text-sky-400">.AI</span>
-            </span>
-            <span className="text-xs font-mono text-slate-400 block -mt-0.5">AI ENGINEER</span>
-          </div>
+          <span className="font-heading font-bold text-base tracking-wide text-white">
+            Abinand B Arjun
+          </span>
         </Link>
 
         <div className="flex items-center gap-2.5 pointer-events-auto z-[61]">
