@@ -104,7 +104,7 @@ export const LoadingScreen = ({ onComplete }) => {
 
             {/* Huge Display Counter */}
             <div className="relative flex items-baseline justify-center">
-              <span className="text-7xl sm:text-9xl md:text-[13rem] font-extrabold tracking-tighter font-mono text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-purple-400 to-pink-500 leading-none drop-shadow-[0_0_35px_rgba(56,189,248,0.2)]">
+              <span className="text-7xl sm:text-9xl md:text-[13rem] font-extrabold tracking-tighter font-mono text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-purple-400 to-pink-500 leading-none">
                 {String(progress).padStart(2, '0')}
               </span>
               <span className="text-3xl sm:text-5xl md:text-7xl font-bold font-mono text-purple-400 ml-2">
@@ -134,7 +134,7 @@ export const LoadingScreen = ({ onComplete }) => {
             {/* Progress Bar Container */}
             <div className="relative w-full h-1 bg-slate-800/80 rounded-full overflow-hidden border border-white/5">
               <motion.div
-                className="h-full bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 rounded-full shadow-[0_0_15px_#38bdf8]"
+                className="h-full bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 rounded-full"
                 style={{ width: `${progress}%` }}
                 transition={{ ease: 'linear' }}
               />

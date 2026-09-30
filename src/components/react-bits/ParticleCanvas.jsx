@@ -35,7 +35,7 @@ export const ParticleCanvas = ({ particleCount = 60 }) => {
 
     // Particle nodes definition
     const particles = [];
-    const colors = ['#38bdf8', '#a855f7', '#10b981', '#6366f1'];
+    const colors = ['#a8afb5'];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -62,7 +62,7 @@ export const ParticleCanvas = ({ particleCount = 60 }) => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(56, 189, 248, ${0.15 * (1 - dist / 130)})`;
+            ctx.strokeStyle = `rgba(148, 156, 163, ${0.1 * (1 - dist / 130)})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }

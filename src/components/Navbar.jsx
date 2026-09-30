@@ -1,332 +1,108 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Cpu, ArrowUpRight, Sun, Moon } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
+import { Briefcase, Folder, Home, Moon, SquarePen, Sun, Wrench } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const navLinks = [
-  { name: 'Home',       to: '/',           number: '01' },
-  { name: 'Projects',   to: '/projects',   number: '02' },
-  { name: 'Experience', to: '/experience', number: '03' },
-  { name: 'Contact',    to: '/contact',    number: '04' },
+  { name: 'Home', to: '/', icon: Home },
+  { name: 'Projects', to: '/projects', icon: Folder },
+  { name: 'Experience', to: '/experience', icon: Briefcase },
+  { name: 'Tools', to: '/#about', icon: Wrench },
+  { name: 'Contact', to: '/contact', icon: SquarePen },
 ];
 
-const socialLinks = [
-  { name: 'GitHub',       href: portfolioData.personal.github   || 'https://github.com/AbinandBArjun' },
-  { name: 'LinkedIn',     href: portfolioData.personal.linkedin  || 'https://linkedin.com' },
-  { name: 'X / Twitter',  href: portfolioData.personal.twitter  || 'https://x.com' },
-];
-
-const drawerVariants = {
-  closed: {
-    x: '100%',
-    transition: { duration: 0.35, ease: [0.32, 0.72, 0, 1] },
-  },
-  open: {
-    x: 0,
-    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
-  },
-};
-
-const linkVariants = {
-  closed: { opacity: 0, x: 25 },
-  open: (i) => ({
-    opacity: 1,
-    x: 0,
-    transition: { delay: 0.12 + i * 0.05, duration: 0.4, ease: [0.22, 1, 0.36, 1] },
-  }),
-};
-
-export const Navbar = ({ onReplayLoader }) => {
-  const { theme, toggleTheme, isDark } = useTheme();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const menuRef = useRef(null);
-  const toggleBtnRef = useRef(null);
-  const navigate = useNavigate();
+export const Navbar = () => {
+  const { toggleTheme, isDark } = useTheme();
   const location = useLocation();
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname]);
-
-  // Click outside listener to close the side menu
-  useEffect(() => {
-    const handlePointerDown = (event) => {
-      if (!menuOpen) return;
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target) &&
-        toggleBtnRef.current &&
-        !toggleBtnRef.current.contains(event.target)
-      ) {
-        setMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('pointerdown', handlePointerDown);
-    return () => {
-      document.removeEventListener('pointerdown', handlePointerDown);
-    };
-  }, [menuOpen]);
-
-  const handleNavClick = (to) => {
-    setMenuOpen(false);
-    if (to === '/' && location.pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-    navigate(to);
-  };
-
   return (
-    <>
-      {/* Top Bar */}
-      <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-        className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-6 md:px-12 py-5 pointer-events-none"
-      >
-        <Link to="/" className="flex items-center gap-3 group z-[61] pointer-events-auto">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-purple-600 p-[1px] shadow-[0_0_15px_rgba(56,189,248,0.3)] transition-transform group-hover:scale-105">
-            <div className="w-full h-full bg-[#07090e] rounded-[11px] flex items-center justify-center">
-              <Cpu className="w-4 h-4 text-sky-400 group-hover:rotate-180 transition-transform duration-700" />
-            </div>
-          </div>
-          <div>
-            <span className="font-heading font-bold text-base tracking-wider text-white flex items-center gap-1">
-              ABINAND<span className="text-sky-400">.AI</span>
-            </span>
-            <span className="text-xs font-mono text-slate-400 block -mt-0.5">AI ENGINEER</span>
-          </div>
-        </Link>
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+      className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-4 py-4 sm:px-6 md:px-12 md:py-5 pointer-events-none"
+    >
+      <Link to="/" className="flex items-center gap-2.5 group z-[61] pointer-events-auto">
+        <span className="h-9 w-9 shrink-0 rounded-xl bg-gradient-to-tr from-sky-500 to-purple-600 p-[1px] transition-transform group-hover:scale-105">
+          <img
+            src="/favicon.jpg"
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full rounded-[11px] object-cover"
+          />
+        </span>
+        <span className="hidden min-[420px]:inline font-heading text-sm font-bold tracking-wide text-white sm:text-base">
+          Abinand B Arjun
+        </span>
+      </Link>
 
-        <div className="flex items-center gap-2.5 pointer-events-auto z-[61]">
-          {/* Light / Dark Mode Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-900/60 backdrop-blur-md border border-white/10 hover:border-sky-500/30 hover:bg-slate-800/80 transition-all shadow-lg cursor-pointer text-slate-300 hover:text-white group"
-            aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-            title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              {isDark ? (
-                <motion.div
-                  key="sun"
-                  initial={{ rotate: -90, opacity: 0, scale: 0.7 }}
-                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                  exit={{ rotate: 90, opacity: 0, scale: 0.7 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="moon"
-                  initial={{ rotate: 90, opacity: 0, scale: 0.7 }}
-                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                  exit={{ rotate: -90, opacity: 0, scale: 0.7 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Moon className="w-4 h-4 text-sky-500 group-hover:-rotate-12 transition-transform" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </button>
-
-          <button
-            ref={toggleBtnRef}
-            onClick={() => setMenuOpen((v) => !v)}
-            className="flex items-center gap-2.5 cursor-pointer group py-1.5 px-3 rounded-xl bg-slate-900/60 backdrop-blur-md border border-white/10 hover:border-sky-500/30 hover:bg-slate-800/80 transition-all shadow-lg"
-            aria-label="Toggle menu"
-            aria-expanded={menuOpen}
-          >
-            <span className="text-xs font-mono tracking-[0.2em] uppercase text-slate-300 group-hover:text-white transition-colors duration-200 select-none">
-              {menuOpen ? 'Close' : 'Menu'}
-            </span>
-            <div className="flex flex-col justify-center items-end gap-[5px]" style={{ width: '22px', height: '20px' }}>
+      <div className="z-[61] flex items-center gap-2 pointer-events-auto">
+        <button
+          onClick={toggleTheme}
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 shadow-lg backdrop-blur-md transition-all hover:border-sky-500/30 hover:bg-slate-800/80 hover:text-white"
+          aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+          title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {isDark ? (
               <motion.span
-                animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-                transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
-                className="block origin-center"
-                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
-              />
-              <motion.span
-                animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                key="sun"
+                initial={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                exit={{ rotate: 90, opacity: 0, scale: 0.7 }}
                 transition={{ duration: 0.2 }}
-                className="block origin-right"
-                style={{ height: '1.5px', width: '14px', background: isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
-              />
+              >
+                <Sun className="h-4 w-4 text-amber-400" />
+              </motion.span>
+            ) : (
               <motion.span
-                animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-                transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
-                className="block origin-center"
-                style={{ height: '1.5px', width: '20px', background: menuOpen ? '#38bdf8' : isDark ? 'rgba(255,255,255,0.9)' : 'rgba(28,25,23,0.8)' }}
-              />
-            </div>
-          </button>
-        </div>
-      </motion.header>
+                key="moon"
+                initial={{ rotate: 90, opacity: 0, scale: 0.7 }}
+                animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                exit={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Moon className="h-4 w-4 text-sky-500" />
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </button>
 
-      {/* Side Menu Drawer & Backdrop */}
-      <AnimatePresence>
-        {menuOpen && (
-          <>
-            {/* Backdrop: translucent dimming of the page, clicking closes the side menu */}
-            <motion.div
-              key="menu-backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setMenuOpen(false)}
-              className="fixed inset-0 z-[54] bg-black/45 backdrop-blur-[2px] cursor-pointer"
-              aria-label="Close menu by clicking outside"
-            />
+        <nav
+          aria-label="Main navigation"
+          className="flex items-center gap-0.5 rounded-full border border-white/[0.06] bg-slate-900/80 p-1 shadow-lg backdrop-blur-xl sm:gap-1 sm:p-1.5"
+        >
+          {navLinks.map(({ name, to, icon: Icon }) => {
+            const isAboutLink = name === 'Tools';
+            const isActive = isAboutLink
+              ? location.pathname === '/' && location.hash === '#about'
+              : location.pathname === to;
 
-            {/* Side Menu Drawer */}
-            <motion.aside
-              key="side-menu-drawer"
-              ref={menuRef}
-              variants={drawerVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              className="menu-drawer fixed top-0 right-0 bottom-0 z-[55] w-full sm:w-[420px] md:w-[460px] max-w-[90vw] h-full flex flex-col justify-between overflow-y-auto bg-[#07090e]/95 backdrop-blur-2xl border-l border-white/10 shadow-[-20px_0_50px_rgba(0,0,0,0.85)]"
-            >
-              {/* Subtle top ambient glow */}
-              <div className="absolute top-0 right-0 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
-
-              {/* Drawer Header Divider */}
-              <div className="menu-drawer-header h-[72px] border-b border-white/[0.06] relative z-10" />
-
-              {/* Navigation Links */}
-              <nav className="flex-1 flex flex-col justify-center px-8 py-6 relative z-10">
-                <ul className="space-y-1">
-                  {navLinks.map((link, i) => {
-                    const isActive = location.pathname === link.to;
-                    const isHovered = hoveredIndex === i;
-
-                    return (
-                      <motion.li
-                        key={link.name}
-                        custom={i}
-                        variants={linkVariants}
-                        initial="closed"
-                        animate="open"
-                        exit={{ opacity: 0, x: 20, transition: { duration: 0.15, delay: i * 0.02 } }}
-                        onMouseEnter={() => setHoveredIndex(i)}
-                        onMouseLeave={() => setHoveredIndex(null)}
-                      >
-                        <button
-                          onClick={() => handleNavClick(link.to)}
-                          className={`w-full group flex items-center justify-between py-3.5 px-4 rounded-xl text-left cursor-pointer transition-all duration-200 ${
-                            isActive
-                              ? 'bg-sky-500/10 border border-sky-500/20 shadow-[0_0_20px_rgba(56,189,248,0.08)]'
-                              : 'hover:bg-white/[0.04] border border-transparent'
-                          }`}
-                        >
-                          <div className="flex items-center gap-4">
-                            <span
-                              className={`font-mono text-xs transition-colors duration-200 ${
-                                isActive ? 'text-sky-400' : isHovered ? 'text-sky-400' : 'text-slate-500'
-                              }`}
-                            >
-                              {link.number}
-                            </span>
-                            <span
-                              className={`font-heading text-xl sm:text-2xl font-bold tracking-tight transition-all duration-200 ${
-                                isActive
-                                  ? 'text-sky-400 translate-x-1'
-                                  : isHovered
-                                  ? 'text-white translate-x-1'
-                                  : 'text-slate-300'
-                              }`}
-                            >
-                              {link.name}
-                            </span>
-                          </div>
-
-                          <div className="flex items-center gap-2">
-                            {isActive && (
-                              <span className="font-mono text-xs uppercase px-2 py-0.5 rounded-full bg-sky-400/15 text-sky-400 border border-sky-400/30">
-                                Current
-                              </span>
-                            )}
-                            <ArrowUpRight
-                              className={`w-4 h-4 transition-all duration-200 ${
-                                isActive
-                                  ? 'text-sky-400 opacity-100 rotate-45'
-                                  : isHovered
-                                  ? 'text-sky-400 opacity-100 translate-x-0.5 -translate-y-0.5'
-                                  : 'text-slate-600 opacity-0 group-hover:opacity-100'
-                              }`}
-                            />
-                          </div>
-                        </button>
-                      </motion.li>
-                    );
-                  })}
-                </ul>
-              </nav>
-
-              {/* Drawer Footer */}
-              <div className="menu-drawer-footer px-8 py-6 border-t border-white/[0.06] flex flex-col gap-4 relative z-10 bg-[#05070c]/50">
-                {/* Social links */}
-                <div className="flex items-center gap-5">
-                  {socialLinks.map((s) => (
-                    <a
-                      key={s.name}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-slate-400 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 text-xs"
-                    >
-                      {s.name}
-                    </a>
-                  ))}
-                </div>
-
-                {/* Status and Action row */}
-                <div className="flex items-center justify-between pt-2 border-t border-white/[0.04]">
-                  <div className="flex items-center gap-2">
-                    <span className="pulse-emerald" />
-                    <span className="font-mono text-slate-400 tracking-wider uppercase text-xs">
-                      Available for Work
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={toggleTheme}
-                      className="font-mono text-slate-400 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 cursor-pointer text-xs flex items-center gap-1.5"
-                    >
-                      {isDark ? <Sun className="w-3 h-3 text-amber-400" /> : <Moon className="w-3 h-3 text-sky-400" />}
-                      <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
-                    </button>
-
-                    {onReplayLoader && (
-                      <button
-                        onClick={() => { setMenuOpen(false); setTimeout(onReplayLoader, 250); }}
-                        className="font-mono text-slate-500 hover:text-sky-400 tracking-wider uppercase transition-colors duration-200 cursor-pointer text-xs"
-                      >
-                        [ Replay ]
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
-    </>
+            return (
+              <Link
+                key={name}
+                to={to}
+                aria-label={name}
+                aria-current={isActive ? 'page' : undefined}
+                className={`group relative flex h-8 w-8 items-center justify-center rounded-full transition-colors sm:h-9 sm:w-9 ${
+                  isActive
+                    ? 'bg-[var(--accent-surface)] text-[var(--accent-cyan)]'
+                    : 'text-slate-300 hover:bg-white/[0.08] hover:text-white'
+                } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-highlight)]`}
+              >
+                <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute left-1/2 top-full z-20 mt-1 -translate-x-1/2 translate-y-1 rounded-md bg-neutral-800 px-2 py-1 font-sans text-xs font-medium leading-none text-white opacity-0 shadow-lg transition-all duration-150 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
+                >
+                  {name}
+                </span>
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
+    </motion.header>
   );
 };

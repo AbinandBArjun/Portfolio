@@ -187,7 +187,7 @@ export const PageTransition = ({ children }) => {
                 exit={{ scaleY: 1, transition: { delay: 0.2, duration: 0.25, ease: 'easeInOut' } }}
                 className="absolute inset-y-0 w-px bg-white/70"
               />
-              <div className="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-sky-400 to-indigo-500 shadow-[0_0_15px_rgba(56,189,248,0.9)] z-10" />
+              <div className="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-sky-400 to-indigo-500 z-10" />
             </div>
 
             <div className="text-center space-y-1.5">

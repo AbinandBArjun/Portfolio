@@ -58,20 +58,15 @@ export const BentoAbout = () => {
 
               <div className="max-w-2xl space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
                 <p>
-                  I'm {personal.name}, an AI engineer with a builder's mindset. I like understanding a
-                  problem end to end—from the data and models behind it to the software and infrastructure
-                  that make it useful in the real world.
+                  Hey, I'm {personal.name}, an AI engineer focused on deep learning, large language models,
+                  generative AI, and distributed training. I enjoy building AI systems that move beyond
+                  experiments and solve practical problems.
                 </p>
                 <p>
-                  My work spans deep learning, large language models, generative AI, and distributed
-                  training. I build with tools and techniques such as LLM fine-tuning, retrieval-augmented
-                  generation, and computer vision, turning promising ideas into scalable, low-latency
-                  applications.
-                </p>
-                <p>
-                  I care about more than getting a model to work: I want the complete system to be reliable,
-                  practical, and ready for people to use. I'm always exploring better ways to bridge AI
-                  research and production, and I'm available for AI engineering and consulting projects.
+                  My work includes fine-tuning models, developing autonomous agents and retrieval-augmented
+                  generation pipelines, and turning research ideas into scalable, low-latency applications.
+                  I'm especially interested in connecting AI research with systems people can use in
+                  production.
                 </p>
               </div>
 

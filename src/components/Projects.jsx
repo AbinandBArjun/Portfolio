@@ -169,7 +169,6 @@ export const Projects = () => {
                 >
                   <SpotlightCard
                     className="h-full flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#13151b] hover:bg-slate-50 dark:hover:bg-[#181a24] border border-slate-200 dark:border-white/[0.08] hover:border-sky-400/40 dark:hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-[0_12px_30px_rgba(0,0,0,0.5)]"
-                    spotlightColor="rgba(56, 189, 248, 0.12)"
                   >
                     <a
                       href={project.githubUrl}
@@ -230,7 +229,7 @@ export const Projects = () => {
                   >
                     <div className="mb-4 flex items-center justify-between gap-4">
                       <h3 className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] text-slate-700 dark:text-slate-200">
-                        <span className="h-2 w-2 shrink-0 rounded-full bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.7)]" />
+                        <span className="h-2 w-2 shrink-0 rounded-full bg-sky-400" />
                         {category.name}
                       </h3>
                       <span className="shrink-0 font-mono text-xs text-slate-500 dark:text-slate-400">
