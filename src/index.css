@@ -2,48 +2,48 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #111315;
-  --bg-secondary: #191b1e;
-  --bg-card: rgba(28, 30, 33, 0.96);
-  --bg-card-hover: rgba(37, 40, 43, 0.98);
+  --bg-primary: #151312;
+  --bg-secondary: #1d1b1a;
+  --bg-card: rgba(27, 25, 24, 0.96);
+  --bg-card-hover: rgba(36, 33, 31, 0.98);
   
   --border-color: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(190, 198, 205, 0.24);
-  --accent-surface: rgba(190, 198, 205, 0.08);
+  --border-highlight: rgba(244, 108, 56, 0.4);
+  --accent-surface: rgba(244, 108, 56, 0.1);
 
-  --accent-cyan: #c5cbd0;
-  --accent-purple: #a8afb5;
-  --accent-emerald: #45ad8c;
-  --status-surface: rgba(69, 173, 140, 0.08);
-  --status-border: rgba(69, 173, 140, 0.22);
-  --status-glow: rgba(69, 173, 140, 0.45);
-  --selection-bg: rgba(190, 198, 205, 0.24);
-  --cursor-border: rgba(190, 198, 205, 0.45);
-  --cursor-border-hover: rgba(220, 224, 227, 0.72);
-  --cursor-surface: rgba(190, 198, 205, 0.03);
-  --cursor-surface-hover: rgba(190, 198, 205, 0.1);
-  --accent-pink: #929aa1;
-  --accent-amber: #c0a879;
+  --accent-cyan: #f46c38;
+  --accent-purple: #c5ff41;
+  --accent-emerald: #f46c38;
+  --status-surface: rgba(244, 108, 56, 0.12);
+  --status-border: rgba(244, 108, 56, 0.35);
+  --status-glow: rgba(244, 108, 56, 0.45);
+  --selection-bg: rgba(244, 108, 56, 0.3);
+  --cursor-border: rgba(244, 108, 56, 0.6);
+  --cursor-border-hover: rgba(244, 108, 56, 0.9);
+  --cursor-surface: rgba(244, 108, 56, 0.05);
+  --cursor-surface-hover: rgba(244, 108, 56, 0.15);
+  --accent-pink: #f46c38;
+  --accent-amber: #f46c38;
 
-  --text-primary: #f8fafc;
-  --text-secondary: #aab1b7;
-  --text-muted: #7f878e;
+  --text-primary: #ffffff;
+  --text-secondary: #998f8f;
+  --text-muted: #6a6b6e;
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Outfit', system-ui, sans-serif;
+  --font-sans: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Poppins', 'Outfit', system-ui, sans-serif;
   --font-mono: 'Fira Code', monospace;
 
-  --glow-cyan: 0 0 24px rgba(190, 198, 205, 0.1);
-  --glow-purple: 0 0 24px rgba(168, 175, 181, 0.08);
-  --glow-emerald: 0 0 24px rgba(69, 173, 140, 0.16);
+  --glow-cyan: 0 0 24px rgba(244, 108, 56, 0.25);
+  --glow-purple: 0 0 24px rgba(197, 255, 65, 0.2);
+  --glow-emerald: 0 0 24px rgba(244, 108, 56, 0.3);
 
-  --grid-line-color: rgba(255, 255, 255, 0.03);
-  --hero-glow-cyan: rgba(190, 198, 205, 0.08);
-  --hero-glow-purple: rgba(168, 175, 181, 0.06);
-  --hero-glow-pink: rgba(148, 156, 163, 0.04);
-  --gradient-start: #f4f5f6;
-  --gradient-mid: #c5cbd0;
-  --gradient-end: #929aa1;
+  --grid-line-color: rgba(255, 255, 255, 0.02);
+  --hero-glow-cyan: rgba(244, 108, 56, 0.12);
+  --hero-glow-purple: rgba(197, 255, 65, 0.08);
+  --hero-glow-pink: rgba(244, 108, 56, 0.06);
+  --gradient-start: #ffffff;
+  --gradient-mid: #f46c38;
+  --gradient-end: #c5ff41;
 }
 
 html.light {
@@ -377,23 +377,23 @@ html.dark [class*="hover:bg-[#181a24]"]:hover {
 }
 
 html.dark [class*="bg-slate-950"] {
-  background-color: #202123 !important;
+  background-color: #151312 !important;
 }
 
 html.dark [class*="bg-slate-900"] {
-  background-color: #292b2e !important;
+  background-color: #1d1b1a !important;
 }
 
 html.dark [class*="bg-slate-800"] {
-  background-color: #35373a !important;
+  background-color: #2a2826 !important;
 }
 
 html.dark [class*="hover:bg-slate-800"]:hover {
-  background-color: #35373a !important;
+  background-color: #2a2826 !important;
 }
 
 html.dark [class*="hover:bg-slate-700"]:hover {
-  background-color: #41464a !important;
+  background-color: #35312e !important;
 }
 
 html.dark [class*="text-sky-"],
