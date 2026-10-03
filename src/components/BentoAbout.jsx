@@ -91,14 +91,23 @@ export const BentoAbout = () => {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   to="/projects"
-                  className="inline-flex items-center gap-2 rounded-xl bg-[#f46c38]/10 border border-[#f46c38]/30 px-5 py-3 text-sm font-semibold text-[#f46c38] transition-colors hover:bg-[#f46c38]/20"
+                  className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-colors"
+                  style={{
+                    background: 'color-mix(in srgb, var(--accent-cyan) 12%, transparent)',
+                    border: '1px solid color-mix(in srgb, var(--accent-cyan) 35%, transparent)',
+                    color: 'var(--accent-cyan)',
+                  }}
                 >
                   Explore my work
                   <ArrowUpRight className="w-4 h-4" />
                 </Link>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-slate-200 transition-colors hover:border-[#f46c38]/30 hover:text-[#f46c38]"
+                  className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-colors border"
+                  style={{
+                    borderColor: 'color-mix(in srgb, var(--border-color) 80%, transparent)',
+                    color: 'var(--text-secondary)',
+                  }}
                 >
                   Get in touch
                   <ArrowUpRight className="w-4 h-4" />
@@ -118,11 +127,15 @@ export const BentoAbout = () => {
                 {focusAreas.map(({ title, description, icon: Icon }) => (
                   <article
                     key={title}
-                    className="min-w-0 rounded-2xl border border-white/10 bg-[#1d1b1a] p-4 sm:p-5 transition-colors hover:border-[#f46c38]/40"
+                    className="min-w-0 rounded-2xl p-4 sm:p-5 transition-colors"
+                    style={{
+                      background: 'var(--bg-card)',
+                      border: '1px solid var(--border-color)',
+                    }}
                   >
-                    <Icon className="w-5 h-5 text-[#f46c38] mb-4" aria-hidden="true" />
-                    <h4 className="text-sm font-semibold text-slate-100 mb-1.5">{title}</h4>
-                    <p className="text-sm leading-relaxed text-slate-400">{description}</p>
+                    <Icon className="w-5 h-5 mb-4" style={{ color: 'var(--accent-cyan)' }} aria-hidden="true" />
+                    <h4 className="text-sm font-semibold mb-1.5" style={{ color: 'var(--text-primary)' }}>{title}</h4>
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>{description}</p>
                   </article>
                 ))}
               </div>

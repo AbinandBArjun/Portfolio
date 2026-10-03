@@ -23,7 +23,10 @@ export const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-4 py-4 sm:px-6 md:px-12 md:py-5 pointer-events-none"
     >
       <Link to="/" className="flex items-center gap-2.5 group z-[61] pointer-events-auto">
-        <span className="h-9 w-9 shrink-0 rounded-xl p-[1px] transition-transform group-hover:scale-105" style={{background: 'linear-gradient(135deg, #f46c38, #c5ff41)'}}>
+        <span
+            className="h-9 w-9 shrink-0 rounded-xl p-[1px] transition-transform group-hover:scale-105"
+            style={{ background: 'linear-gradient(135deg, var(--accent-cyan), var(--accent-purple))' }}
+          >
           <img
             src="/favicon.jpg"
             alt=""
@@ -39,7 +42,10 @@ export const Navbar = () => {
       <div className="z-[61] flex items-center gap-2 pointer-events-auto">
         <button
           onClick={toggleTheme}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#1d1b1a]/80 text-slate-300 shadow-lg backdrop-blur-md transition-all hover:border-[#f46c38]/50 hover:bg-[#2a2826] hover:text-[#f46c38]"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#1d1b1a]/80 text-slate-300 shadow-lg backdrop-blur-md transition-all"
+          style={{ '--hover-border': 'color-mix(in srgb, var(--accent-cyan) 50%, transparent)' }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--accent-cyan) 50%, transparent)'; e.currentTarget.style.color = 'var(--accent-cyan)'; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = ''; e.currentTarget.style.color = ''; }}
           aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
           title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
         >
@@ -62,7 +68,7 @@ export const Navbar = () => {
                 exit={{ rotate: -90, opacity: 0, scale: 0.7 }}
                 transition={{ duration: 0.2 }}
               >
-                <Moon className="h-4 w-4 text-[#f46c38]" />
+                <Moon className="h-4 w-4" style={{ color: 'var(--accent-cyan)' }} />
               </motion.span>
             )}
           </AnimatePresence>
