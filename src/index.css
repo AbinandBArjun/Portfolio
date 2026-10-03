@@ -355,6 +355,46 @@ html.light .menu-drawer [class*="text-sky-400"] {
   color: var(--accent-cyan) !important;
 }
 
+/* ── Navbar light mode overrides ─────────────────────────────── */
+/* Nav pill (bg-[#151312]/90) */
+html.light .bg-\[\#151312\]\/90 {
+  background-color: rgba(245, 240, 232, 0.92) !important;
+  border-color: rgba(100, 90, 70, 0.18) !important;
+}
+
+/* Theme-toggle button (bg-[#1d1b1a]/80) */
+html.light .bg-\[\#1d1b1a\]\/80 {
+  background-color: rgba(236, 230, 217, 0.88) !important;
+  border-color: rgba(100, 90, 70, 0.18) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Logo name text colour in light mode */
+html.light header .font-heading {
+  color: var(--text-primary) !important;
+}
+
+/* Nav-link icons in light mode */
+html.light nav[aria-label="Main navigation"] a:not([aria-current="page"]) {
+  color: var(--text-secondary) !important;
+}
+html.light nav[aria-label="Main navigation"] a:not([aria-current="page"]):hover {
+  background-color: rgba(92, 107, 60, 0.1) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Active nav item in light mode */
+html.light nav[aria-label="Main navigation"] a[aria-current="page"] {
+  background-color: rgba(92, 107, 60, 0.14) !important;
+  color: var(--accent-cyan) !important;
+}
+
+/* Tooltip background in light mode */
+html.light nav[aria-label="Main navigation"] span.bg-neutral-800 {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
 html.dark [class*="bg-[#07090e]"] {
   background-color: var(--bg-primary) !important;
 }
