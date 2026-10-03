@@ -1,14 +1,13 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Briefcase, Folder, Home, Moon, SquarePen, Sun, Wrench } from 'lucide-react';
+import { Briefcase, Folder, Home, Moon, SquarePen, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const navLinks = [
   { name: 'Home', to: '/', icon: Home },
   { name: 'Projects', to: '/projects', icon: Folder },
   { name: 'Experience', to: '/experience', icon: Briefcase },
-  { name: 'Tools', to: '/#about', icon: Wrench },
   { name: 'Contact', to: '/contact', icon: SquarePen },
 ];
 
@@ -74,10 +73,7 @@ export const Navbar = () => {
           className="flex items-center gap-0.5 rounded-full border border-white/[0.06] bg-slate-900/80 p-1 shadow-lg backdrop-blur-xl sm:gap-1 sm:p-1.5"
         >
           {navLinks.map(({ name, to, icon: Icon }) => {
-            const isAboutLink = name === 'Tools';
-            const isActive = isAboutLink
-              ? location.pathname === '/' && location.hash === '#about'
-              : location.pathname === to;
+            const isActive = location.pathname === to;
 
             return (
               <Link
