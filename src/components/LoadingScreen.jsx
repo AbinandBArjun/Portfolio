@@ -47,9 +47,9 @@ export const LoadingScreen = ({ onComplete }) => {
           setIsDone(true);
           document.body.style.overflow = '';
           if (onComplete) onComplete();
-        }, 350); // slight pause at 100% for smooth visual payoff
+        }, 200); // slight pause at 100% for smooth visual payoff
       }
-    }, 35);
+    }, 18);
 
     return () => {
       clearInterval(interval);
